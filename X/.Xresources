@@ -35,7 +35,7 @@ URxvt.matcher.button:		1
 *.color9:       #c16772
 
 ! green
-*.color2:       #428e8e
+*.color2:       #8dc833
 *.color10:      #afda6e
 
 ! yellow
