@@ -230,12 +230,26 @@ type = internal/network
 
 interface = wlp5s0
 
-format-connected = <label-connected>
+format-connected = <ramp-signal> <label-connected>
 format-connected-padding = 2
 
 format-disconnected = <label-disconnected>
 format-disconnected-padding = 2
 
-label-connected =  %essid%
+label-connected = %essid%
 
-label-disconnected =  None
+label-disconnected = None
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-5 = 
+
+ramp-signal-0-foreground = ${xrdb:*.color1}
+ramp-signal-1-foreground = ${xrdb:*.color11}
+ramp-signal-2-foreground = ${xrdb:*.color11}
+ramp-signal-3-foreground = ${xrdb:*.color10}
+ramp-signal-4-foreground = ${xrdb:*.color10}
+ramp-signal-5-foreground = ${xrdb:*.color10}

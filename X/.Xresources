@@ -11,7 +11,7 @@ Xft.rgba:                       rgb
 URxvt*termName:                 rxvt-256color
 URxvt.depth:                    32
 URxvt*lineSpace:                1
-URxvt.letterSpace		-1
+URxvt.letterSpace:              -1
 URxvt.iso14755:                 false
 URxvt.iso14755_52:              false
 URxvt*geometry:                 65x17
