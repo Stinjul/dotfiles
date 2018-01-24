@@ -28,6 +28,6 @@ if &t_Co > 2 || has("gui_running")
 	set hlsearch
 endif
 
-inoremap <C-v> <ESC>"+pa
-vnoremap <C-c> "+y
-vnoremap <C-d> "+d
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+map <C-n> :NERDTreeToggle<CR>
