@@ -14,9 +14,5 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-
 # Put your fun stuff here.
 export PATH=$PATH:~/bin
-
-# BOTTOM PLS
-[ -x /bin/fish ] && SHELL=/bin/fish exec /bin/fish

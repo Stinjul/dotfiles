@@ -1,3 +1,6 @@
+execute pathogen#infect()
+execute pathogen#helptags()
+
 set nocompatible
 set backspace=indent,eol,start
 set autoindent
@@ -9,7 +12,14 @@ set cul
 set more
 set scrolloff=3
 set vb t_vb=
+set backup
+syntax on
 
+" Autocomplete
+set wildmode=longest,list,full
+set wildmenu
+
+" Enable relativenumber only on focused window
 set number relativenumber
 augroup numbertoggle
 	autocmd!
@@ -17,17 +27,11 @@ augroup numbertoggle
 	autocmd BufLeave,FocusLost,InsertEnter		* set norelativenumber
 augroup END
 
-if has("vms")
-	set nobackup
-else
-	set backup
-endif
-
-if &t_Co > 2 || has("gui_running")
-	syntax on
-	set hlsearch
-endif
-
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
+" Toggle NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
+" Toggle spellcheck
+map <F6> :setlocal spell! spelllang=en_gb,en_us,nl<CR>
+
+" No newline comment
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
