@@ -1,6 +1,8 @@
+; vim:ft=dosini
+
 [bar/example]
 width = 100%
-height = 40
+height = 18
 
 ;monitor = ${env:MONITOR:eDP-1}
 
@@ -9,14 +11,36 @@ foreground = ${xrdb:*.foreground}
 
 fixed-center = true
 
-font-0 = Iosevka Nerd Font:pixelsize=12:weight=bold;0
+font-0 = Iosevka Nerd Font:pixelsize=11;2
 
 modules-left = i3
-modules-center = date weather
-modules-right = wireless-network cpu memory temperature pavolume backlight battery powermenu
+modules-center = weather
+modules-right = space1 wireless-network space2 cpu space1 memory space2 temperature space1 pavolume space2 backlight space1 battery space2 date space1 powermenu
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
+
+[module/space1]
+type = custom/text
+content = ""
+
+content-background = ${xrdb:*.background}
+content-foreground = ${xrdb:*.color3}
+
+[module/space2]
+type = custom/text
+content = ""
+
+content-background = ${xrdb:*.color3}
+content-foreground = ${xrdb:*.background}
+
+[module/space1t]
+type = custom/text
+content = ""
+
+content-background = #000000ff
+content-foreground = #000000ff
+
 
 [module/i3]
 type = internal/i3
@@ -45,9 +69,9 @@ type = internal/cpu
 interval = 1
 
 format = <label>
-format-padding = 2
+format-padding = 1 
 
-label =  %percentage%%
+label = " %percentage%%"
 
 
 [module/memory]
@@ -56,7 +80,8 @@ type = internal/memory
 interval = 1
 
 format = <label>
-format-padding = 2
+format-padding = 1
+format-background = ${xrdb:*.color3}
 
 label =  %gb_used% (%percentage_used%%)
 
@@ -66,7 +91,7 @@ type = internal/temperature
 
 interval = 1
 
-thermal-zone = 6
+thermal-zone = 1
 
 warn-temperature = 80
 
@@ -115,14 +140,17 @@ adapter = ACAD
 
 poll-interval = 5
 
+format-charging-background = ${xrdb:*.color3}
+format-discharging-background = ${self.format-charging-background}
+
 format-charging = <animation-charging> <label-charging>
-format-charging-padding = 2
+format-charging-padding = 1
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-padding = 2
+format-discharging-padding = 1
 
 format-full = <ramp-capacity> <label-full>
-format-full-padding = 2
+format-full-padding = 1
 
 label-charging = %percentage%%
 
@@ -160,7 +188,8 @@ type = custom/script
 interval = 1
 label = %output%
 
-format-padding = 2
+format-padding = 1
+format-background = ${xrdb:*.color3}
 
 exec = ~/scripts/pavolume.sh
 exec-if = pacmd list-sinks | grep -q available
@@ -175,44 +204,48 @@ scroll-down = ~/scripts/pavolume.sh --down
 type = custom/menu
 
 label-open =   
+label-open-background = ${xrdb:*.color3}
 
 label-close = cancel
 
-label-close-background = ${xrdb:*.background}
+label-separator = "" 
+label-separator-background = ${xrdb:*.color3}
+label-separator-foreground = ${xrdb:*.background}
+
+label-close-background = ${xrdb:*.color3}
 label-close-foreground = ${xrdb:*.foreground}
-label-open-padding-left = 4
-label-open-padding-right = 3
-label-close-padding = 3
+label-open-padding = 3
+label-close-padding = 1
 
 menu-0-0 = lock
 menu-0-0-exec = ~/scripts/i3lock.sh
-menu-0-0-background = ${xrdb:*.background}
-menu-0-0-foreground = ${xrdb:*.color1}
-menu-0-0-padding-right = 3
+menu-0-0-background = ${xrdb:*.color3}
+menu-0-0-foreground = ${xrdb:*.foreground}
+menu-0-0-padding = 1
 
 menu-0-1 = reboot
 menu-0-1-exec = menu-open-1
-menu-0-1-background = ${xrdb:*.background}
-menu-0-1-foreground = ${xrdb:*.color1}
-menu-0-1-padding-right = 3
+menu-0-1-background = ${self.menu-0-0-background}
+menu-0-1-foreground = ${self.menu-0-0-foreground}
+menu-0-1-padding = ${self.menu-0-0-padding}
 
 menu-0-2 = power off
 menu-0-2-exec = menu-open-2
-menu-0-2-background = ${xrdb:*.background}
-menu-0-2-foreground = ${xrdb:*.color1}
-menu-0-2-padding-right = 3
+menu-0-2-background = ${self.menu-0-0-background}
+menu-0-2-foreground = ${self.menu-0-0-foreground}
+menu-0-2-padding = ${self.menu-0-0-padding}
 
 menu-1-0 = reboot?  
 menu-1-0-exec = sudo reboot
-menu-1-0-background = ${xrdb:*.background}
-menu-1-0-foreground = ${xrdb:*.color3}
-menu-1-0-padding-right = 3
+menu-1-0-background = ${xrdb:*.color3}
+menu-1-0-foreground = ${xrdb:*.color9}
+menu-1-0-padding = ${self.menu-0-0-padding}
 
 menu-2-0 = power off?  
 menu-2-0-exec = sudo poweroff
-menu-2-0-background = ${xrdb:*.background}
-menu-2-0-foreground = ${xrdb:*.color3}
-menu-2-0-padding-right = 3
+menu-2-0-background = ${self.menu-1-0-background}
+menu-2-0-foreground = ${self.menu-1-0-foreground}
+menu-2-0-padding = ${self.menu-0-0-padding}
 
 
 [module/weather]
@@ -230,11 +263,11 @@ type = internal/network
 
 interface = wlp5s0
 
-format-connected = <ramp-signal> <label-connected>
-format-connected-padding = 2
+format-connected = "<ramp-signal> <label-connected>"
+format-connected-background = ${xrdb:*.color3}
+format-connected-padding = 1
 
 format-disconnected = <label-disconnected>
-format-disconnected-padding = 2
 
 label-connected = %essid%
 
