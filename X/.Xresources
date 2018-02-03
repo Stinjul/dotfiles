@@ -25,10 +25,10 @@ URxvt.url-launcher:             chromium
 URxvt.matcher.button:		1
 
 rofi.color-enabled: true
-rofi.color-window: V_background,	V_color9,	V_color13
-rofi.color-normal: V_background,	V_foreground,	V_color13,	V_color9,	V_foreground
-rofi.color-active: V_background,	V_color1,	V_color13,	V_color1,	V_foreground
-rofi.color-urgent: V_background,	V_color3,	V_color13,	V_color3,	V_foreground
+rofi.color-window: V_background,	V_color3,	V_color3
+rofi.color-normal: V_background,	V_foreground,	V_color3,	V_color9,	V_foreground
+rofi.color-active: V_background,	V_color1,	V_color3,	V_color1,	V_foreground
+rofi.color-urgent: V_background,	V_color9,	V_color3,	V_color9,	V_foreground
 rofi.width: 800
 rofi.padding: 50
 rofi.font: Iosevka Nerd Font Mono 18

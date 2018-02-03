@@ -232,10 +232,11 @@ mode "$mode_gaps_outer" {
 
 bindsym $mod+Shift+x exec ~/scripts/i3lock.sh
 
+exec --no-startup-id mpd
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/wallpaper1.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id qlipper
-exec compton --config ~/.config/compton.conf
+exec --no-startup-id compton --config ~/.config/compton.conf
 
 ### Window stuff ###
 for_window [class="^.*"] border pixel 1

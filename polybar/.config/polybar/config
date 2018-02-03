@@ -13,7 +13,7 @@ fixed-center = true
 
 font-0 = Iosevka Nerd Font:pixelsize=11;2
 
-modules-left = i3
+modules-left = i3 space2l mpd space1l
 modules-center = weather
 modules-right = space1 wireless-network space2 cpu space1 memory space2 temperature space1 pavolume space2 backlight space1 battery space2 date space1 powermenu
 
@@ -27,9 +27,24 @@ content = ""
 content-background = ${xrdb:*.background}
 content-foreground = ${xrdb:*.color3}
 
+[module/space1l]
+type = custom/text
+content = ""
+
+content-background = ${xrdb:*.background}
+content-foreground = ${xrdb:*.color3}
+
+
 [module/space2]
 type = custom/text
 content = ""
+
+content-background = ${xrdb:*.color3}
+content-foreground = ${xrdb:*.background}
+
+[module/space2l]
+type = custom/text
+content = ""
 
 content-background = ${xrdb:*.color3}
 content-foreground = ${xrdb:*.background}
@@ -50,6 +65,10 @@ strip-wsnumbers = true
 index-sort = true
 enable-scroll = false
 
+label-separator = "" 
+label-separator-background = ${xrdb:*.background}
+label-separator-foreground = ${xrdb:*.color3}
+
 format = <label-state>
 format-padding-right = 2
 
@@ -62,6 +81,36 @@ label-focused-padding = 1
 label-urgent-foreground = ${xrdb:*.color3}
 label-urgent-padding = 1
 
+[module/mpd]
+type = internal/mpd
+format-online = <label-song> <label-time> <icon-prev> <toggle> <icon-stop> <icon-next>
+format-online-background = ${xrdb:*.color3}
+format-online-padding = 1
+format-offline = MPD is ded
+format-offline-background = ${xrdb:*.color3}
+format-offline-padding = 1
+#<toggle>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+#icon-prev = <-
+#icon-stop = X
+#icon-play-prefix = #f00
+#icon-play = (Paused)
+#icon-pause =
+#icon-next = ->
+
+;bar-progress-width = 45
+;bar-progress-indicator = |
+;bar-progress-fill = -
+;bar-progress-empty = -
+
+label-song =  %artist% - %title%
+label-song-maxlen = 70
+label-song-ellipsis = true
 
 [module/cpu]
 type = internal/cpu
@@ -93,18 +142,18 @@ interval = 1
 
 thermal-zone = 1
 
-warn-temperature = 80
+warn-temperature = 85
 
 format = <ramp> <label>
-format-padding = 2
+format-padding = 1
 
 format-warn = <ramp> <label-warn>
-format-warn-padding = 2
+format-warn-padding = 1
 
 label = %temperature%
 
 label-warn = %temperature%
-label-warn-foreground = ${xrdb:*.color3}
+label-warn-foreground = ${xrdb:*.color1}
 
 ramp-0 = 
 ramp-1 = 
@@ -133,15 +182,16 @@ label =  %date% %time%
 [module/battery]
 type = internal/battery
 
-full-at = 100
+full-at = 97
 
 battery = BAT1
-adapter = ACAD
+adapter = ADP1
 
 poll-interval = 5
 
 format-charging-background = ${xrdb:*.color3}
 format-discharging-background = ${self.format-charging-background}
+format-full-background = ${self.format-charging-background}
 
 format-charging = <animation-charging> <label-charging>
 format-charging-padding = 1
@@ -152,7 +202,7 @@ format-discharging-padding = 1
 format-full = <ramp-capacity> <label-full>
 format-full-padding = 1
 
-label-charging = %percentage%%
+label-charging = %percentage%% 
 
 label-discharging = %percentage%%
 
