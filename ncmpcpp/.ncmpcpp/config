@@ -1,3 +1,4 @@
+# vim:ft=dosini
 ##############################################################
 ## This is the example configuration file. Copy it to       ##
 ## $HOME/.ncmpcpp/config or $XDG_CONFIG_HOME/ncmpcpp/config ##

@@ -15,7 +15,7 @@ font-0 = Iosevka Nerd Font:pixelsize=11;2
 
 modules-left = i3 space2l mpd space1l
 modules-center = weather
-modules-right = space1 wireless-network space2 cpu space1 memory space2 temperature space1 pavolume space2 backlight space1 battery space2 date space1 powermenu
+modules-right = space1 wireless-network space2 cpu space1 memory space2 temperature space1 volume space2 backlight space1 battery space2 date space1 powermenu
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -174,7 +174,7 @@ date-alt = %A, %d %B %Y
 time-alt = %H:%M:%S
 
 format = <label>
-format-padding = 2
+format-padding = 1
 
 label =  %date% %time%
 
@@ -228,27 +228,67 @@ type = internal/backlight
 card = intel_backlight
 
 format = <label>
-format-padding = 2
+format-padding = 1
 
 label =  %percentage%%
 
 
-[module/pavolume]
-type = custom/script
-interval = 1
-label = %output%
+#[module/pavolume]
+#type = custom/script
+#interval = 1
+#label = %output%
+#
+#format-padding = 1
+#format-background = ${xrdb:*.color3}
+#
+#exec = ~/scripts/pavolume.sh
+#exec-if = pacmd list-sinks | grep -q available
+#
+#click-left = ~/scripts/pavolume.sh --togmute
+#click-right = exec pavucontrol
+#scroll-up = ~/scripts/pavolume.sh --up
+#scroll-down = ~/scripts/pavolume.sh --down
 
-format-padding = 1
-format-background = ${xrdb:*.color3}
+[module/volume]
+type = internal/alsa
 
-exec = ~/scripts/pavolume.sh
-exec-if = pacmd list-sinks | grep -q available
+format-volume = <ramp-volume> <label-volume>
+format-volume-background = ${xrdb:*.color3}
+format-volume-padding = 1
 
-click-left = ~/scripts/pavolume.sh --togmute
-click-right = exec pavucontrol
-scroll-up = ~/scripts/pavolume.sh --up
-scroll-down = ~/scripts/pavolume.sh --down
+label-volume = %percentage%%
 
+#bar-volume-width = 10
+#bar-volume-fill = ─
+#bar-volume-indicator = 
+#bar-volume-empty = ┄
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+label-muted =  muted
+format-muted-background = ${xrdb:*.color3}
+format-muted-padding = 1
+
+master-soundcard = hw:1
+speaker-soundcard = hw:1
+headphone-soundcard = hw:1
+
+master-mixer = Master
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 24
+
+# If headphone-id isn't working, your defaults might be wrong and need to be corrected in .asoundrc (probably defaults.ctl.!card and !device)
+
+#amixer -c 1 controls
+#numid=24,iface=CARD,name='Headphone Jack'
+
+mapped = true
 
 [module/powermenu]
 type = custom/menu
