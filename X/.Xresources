@@ -1,6 +1,8 @@
 #include ".Xresources.d/colors-main2"
 
-*.font:		xft:Iosevka\ Nerd\ Font\ Mono:pixelsize=14
+*.font:		xft:IosevkaNerdFontMono:pixelsize=14,\
+		xft:DejavuSansMono:pixelsize=14,\
+		xft:Monospace:pixelsize=14
 
 Xft.dpi:	96
 Xft.antialias:	1
@@ -12,7 +14,7 @@ Xft.rgba:	rgb
 
 URxvt*termName:		rxvt-256color
 URxvt.depth:		32
-URxvt.letterSpace:	-1
+URxvt.linesize:		-1
 URxvt.iso14755:		false
 URxvt.iso14755_52:	false
 URxvt*geometry:		65x17

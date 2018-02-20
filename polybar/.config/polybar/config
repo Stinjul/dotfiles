@@ -70,7 +70,6 @@ label-separator-background = ${xrdb:*.background}
 label-separator-foreground = ${xrdb:*.color3}
 
 format = <label-state>
-format-padding-right = 2
 
 label-unfocused-foreground = ${xrdb:*.color7}
 label-unfocused-padding = 1

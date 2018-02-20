@@ -30,7 +30,8 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -44,10 +45,10 @@ bindsym $mod+d exec rofi -show run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+m focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -56,10 +57,15 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+m move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+y resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+u resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+i resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+o resize grow width 10 px or 10 ppt
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -68,7 +74,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+m split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -107,11 +113,11 @@ set $w2 2: 1
 set $w3 3: 2
 set $w4 4:
 set $w5 5:
-set $w6 6:file
-set $w7 7:vlab
-set $w8 8:apps
-set $w9 9:hack
-set $w10 10:misc
+set $w6 6:6
+set $w7 7:7
+set $w8 8:8
+set $w9 9:9
+set $w10 10:
 
 # Switch to workspace
 bindsym $mod+1 workspace $w1
@@ -146,28 +152,28 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym m resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+#mode "resize" {
+#        # These bindings trigger as soon as you enter the resize mode
+#
+#        # Pressing left will shrink the window’s width.
+#        # Pressing right will grow the window’s width.
+#        # Pressing up will shrink the window’s height.
+#        # Pressing down will grow the window’s height.
+#        bindsym j resize shrink width 10 px or 10 ppt
+#        bindsym k resize grow height 10 px or 10 ppt
+#        bindsym l resize shrink height 10 px or 10 ppt
+#        bindsym m resize grow width 10 px or 10 ppt
+#
+#        # same bindings, but for the arrow keys
+#        bindsym Left resize shrink width 10 px or 10 ppt
+#        bindsym Down resize grow height 10 px or 10 ppt
+#        bindsym Up resize shrink height 10 px or 10 ppt
+#        bindsym Right resize grow width 10 px or 10 ppt
+#
+#        # back to normal: Enter or Escape
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#}
 
 bindsym $mod+r mode "resize"
 
@@ -230,6 +236,30 @@ mode "$mode_gaps_outer" {
 #        status_command i3status
 #}
 
+set_from_resource $darkblack	color0
+set_from_resource $black	color8
+set_from_resource $darkred	color1  #000000
+set_from_resource $red		color9  #000000
+set_from_resource $darkgreen	color2  #000000
+set_from_resource $green	color10 #000000
+set_from_resource $darkyellow	color3  #000000
+set_from_resource $yellow	color11 #000000
+set_from_resource $darkblue	color4  #000000
+set_from_resource $blue		color12 #000000
+set_from_resource $darkmagenta	color5  #000000
+set_from_resource $magenta	color13 #000000
+set_from_resource $darkcyan	color6  #000000
+set_from_resource $cyan		color14 #000000
+set_from_resource $darkwhite	color7  #000000
+set_from_resource $white	color15 #000000
+
+#			BORDER		BACKGROUND	TEXT		INDICATOR	CHILD_BORDER
+client.focused		$black		$black		$darkwhite	$yellow		$darkyellow
+client.unfocused	$black		$black		$white		$darkblack	$darkblack
+client.focused_inactive	$black		$black		$white		$darkblack	$darkblack
+client.urgent		$darkred	$darkred	$black		$red		$darkred
+client.background	$black
+
 bindsym $mod+Shift+x exec ~/scripts/i3lock.sh
 
 exec --no-startup-id mpd
@@ -237,6 +267,11 @@ exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/wallpaper1.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id qlipper
 exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id i3-msg 'workspace $w10; exec st -n music_player -e ncmpcpp -s visualizer -S visualizer'
+exec --no-startup-id i3-msg 'workspace $w1; exec st -n main_term'
+
+assign [instance="main_term"] $w1
+assign [instance="music_player"] $w10
 
 ### Window stuff ###
 for_window [class="^.*"] border pixel 1
@@ -250,6 +285,5 @@ for_window [window_type="menu"] floating enable
 for_window [class="Pavucontrol"] floating enable
 
 ### automove app to workspace ###
-assign [class="^Firefox$"]		$w4
-assign [class="^libreoffice$"]		$w5
-
+assign [class="^Firefox$"]			$w4
+assign [class="^(?i)libreoffice.*"]		$w5

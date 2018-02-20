@@ -36,6 +36,9 @@ map <F6> :setlocal spell! spelllang=en_gb,en_us,nl<CR>
 " No newline comment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+"disable pandoc auto-spellcheck (why)
+let g:pandoc#modules#disabled = ["spell"]
+
 " Luke smith .vimrc stuff
 " https://github.com/LukeSmithxyz/voidrice/blob/master/.vimrc
 
