@@ -131,6 +131,7 @@ bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace $w9
 bindsym $mod+0 workspace $w10
 #bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Tab exec rofi -show window
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1

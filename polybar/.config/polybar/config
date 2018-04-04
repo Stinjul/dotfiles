@@ -344,7 +344,7 @@ interval = 120
 
 format-padding = 2
 
-exec = ~/scripts/weather.py
+exec = ~/scripts/openweathermap-detailed.sh
 
 
 [module/wireless-network]
