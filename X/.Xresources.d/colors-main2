@@ -3,7 +3,7 @@
 #define V_background	#1b1918
 
 ! black
-#define V_color0	#1b1918
+#define V_color0	#312f2f
 #define V_color8	#766e6b
 ! red
 #define V_color1	#dd0e23

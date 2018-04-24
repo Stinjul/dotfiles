@@ -19,6 +19,9 @@ syntax on
 set wildmode=longest,list,full
 set wildmenu
 
+" Colorizer
+let g:colorizer_auto_color=1
+
 " Enable relativenumber only on focused window
 set number relativenumber
 augroup numbertoggle
