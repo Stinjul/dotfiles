@@ -56,6 +56,14 @@ inoremap ;gui <++>
 	autocmd FileType bib inoremap ;b @book{<Enter>author<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>publisher<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>6kA,<Esc>i
 	autocmd FileType bib inoremap ;c @incollection{<Enter>author<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>booktitle<Space>=<Space>"<++>",<Enter>editor<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>publisher<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>8kA,<Esc>i
 
+"""LATEX
+	" Word count:
+	autocmd FileType tex map <F3> :w !detex \| wc -w<CR>
+	autocmd FileType tex inoremap <F3> <Esc>:w !detex \| wc -w<CR>
+	" Compile document using luatex:
+	autocmd FileType tex inoremap <F5> <Esc>:w<Enter>:!lualatex<space><c-r>%<Enter>a
+	autocmd FileType tex nnoremap <F5> :w<Enter>:!lualatex<space><c-r>%<Enter>
+
 "MARKDOWN
 	autocmd Filetype markdown,rmd inoremap ;n ---<Enter><Enter>
 	autocmd Filetype markdown,rmd inoremap ;b ****<++><Esc>F*hi

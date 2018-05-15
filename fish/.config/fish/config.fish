@@ -1,4 +1,4 @@
-set -x PATH $PATH /usr/local/bin $HOME/.local/bin
+set -x PATH $PATH /usr/local/bin $HOME/.local/bin /opt/bin
 
 set -g theme_display_user yes
 set -g theme_display_hostname yes
