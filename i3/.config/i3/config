@@ -275,6 +275,7 @@ assign [instance="music_player"] $w10
 
 ### Window stuff ###
 for_window [class="^.*"] border pixel 3
+for_window [title="^.*"] border pixel 3
 for_window [urgent=latest] focus
 for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 for_window [instance="sun-awt-X11-XDialogPeer"] floating enable
