@@ -14,13 +14,13 @@ Xft.rgba:	rgb
 
 URxvt*termName:		rxvt-256color
 URxvt.depth:		32
-URxvt.linesize:		-1
+URxvt.linesize:		0
 URxvt.iso14755:		false
 URxvt.iso14755_52:	false
 URxvt*geometry:		65x17
 URxvt.scrollBar:	false
 URxvt*loginShell:	true
-URxvt.internalBorder:	25
+URxvt.internalBorder:	3
 URxvt.perl-ext:
 URxvt.url-launcher:	chromium
 URxvt.matcher.button:	1

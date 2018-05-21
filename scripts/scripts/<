@@ -1,0 +1,7 @@
+#!/bin/bash
+
+while read -r def var val; do
+    printf -v $var "$val"
+done < <(xrdb -query | egrep '\*\.' | sed '/font/d; s/[*.:]//g')
+
+(set -o posix ; set)
