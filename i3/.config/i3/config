@@ -267,6 +267,9 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id qlipper
 exec --no-startup-id compton --config ~/.config/compton.conf
 exec --no-startup-id /usr/lib/libexec/kdeconnectd
+exec --no-startup-id calcurse-caldav --init=keep-remote
+exec --no-startup-id calcurse --daemon
+
 exec --no-startup-id i3-msg 'workspace $w10; exec kitty --name music_player ncmpcpp -s visualizer -S visualizer'
 exec --no-startup-id i3-msg 'workspace $w1; exec kitty --name main_term'
 
