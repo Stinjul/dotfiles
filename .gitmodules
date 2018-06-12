@@ -1,9 +1,24 @@
-[submodule "Colorizer"]
-	path = Colorizer
-	url = ./vim/.vim/bundle/Colorizer/
-[submodule "Nvim-R"]
-	path = Nvim-R
-	url = ./vim/.vim/bundle/Nvim-R/
-[submodule "nerdtree"]
-	path = nerdtree
-	url = ./vim/.vim/bundle/nerdtree/
+[submodule "vim/.vim/bundle/nerdtree"]
+	path = vim/.vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/.vim/bundle/Colorizer"]
+	path = vim/.vim/bundle/Colorizer
+	url = https://github.com/chrisbra/Colorizer.git
+[submodule "vim/.vim/bundle/Nvim-R"]
+	path = vim/.vim/bundle/Nvim-R
+	url = https://github.com/jalvesaq/Nvim-R.git
+[submodule "vim/.vim/bundle/vim-pandoc"]
+	path = vim/.vim/bundle/vim-pandoc
+	url = https://github.com/vim-pandoc/vim-pandoc.git
+[submodule "vim/.vim/bundle/vim-pandoc-syntax"]
+	path = vim/.vim/bundle/vim-pandoc-syntax
+	url = https://github.com/vim-pandoc/vim-pandoc-syntax.git
+[submodule "vim/.vim/bundle/vim-ps1"]
+	path = vim/.vim/bundle/vim-ps1
+	url = https://github.com/PProvost/vim-ps1.git
+[submodule "vim/.vim/bundle/vim-rmarkdown"]
+	path = vim/.vim/bundle/vim-rmarkdown
+	url = https://github.com/vim-pandoc/vim-rmarkdown.git
+[submodule "vim/.vim/bundle/vim-surround"]
+	path = vim/.vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
