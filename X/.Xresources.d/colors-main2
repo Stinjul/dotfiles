@@ -2,27 +2,34 @@
 #define V_cursor #a8a19f
 #define V_background #1b1918
 
-# black
+!black
 #define V_color0	#312f2f
 #define V_color8	#766e6b
-# red
+
+!red
 #define V_color1	#dd0e23
 #define V_color9	#f22c40
-# green
+
+!green
 #define V_color2	#47902c
 #define V_color10	#5ab738
-# yellow
+
+!yellow
 #define V_color3	#a87214
 #define V_color11	#d5911a
-# blue
+
+!blue
 #define V_color4	#1b62d9
 #define V_color12	#407ee7
-# magenta
+
+!magenta
 #define V_color5	#7B39e4
 #define V_color13	#9966ea
-# cyan
+
+!cyan
 #define V_color6	#007a6e
 #define V_color14	#00ad9c
-# white
+
+!white
 #define V_color7	#a8a19f
 #define V_color15	#f1efee

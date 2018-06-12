@@ -1,0 +1,9 @@
+[submodule "Colorizer"]
+	path = Colorizer
+	url = ./vim/.vim/bundle/Colorizer/
+[submodule "Nvim-R"]
+	path = Nvim-R
+	url = ./vim/.vim/bundle/Nvim-R/
+[submodule "nerdtree"]
+	path = nerdtree
+	url = ./vim/.vim/bundle/nerdtree/

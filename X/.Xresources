@@ -1,6 +1,6 @@
 #include ".Xresources.d/colors-main2"
 
-*.font:		xft:IosevkaNerdFontMono:pixelsize=14,\
+Urxvt.font:		xft:IosevkaNerdFontMono:pixelsize=14,\
 		xft:DejavuSansMono:pixelsize=14,\
 		xft:Monospace:pixelsize=14
 
@@ -11,6 +11,8 @@ Xft.hinting:	1
 Xft.hintstyle:	hintslight
 Xft.lcdfilter:	lcdlight
 Xft.rgba:	rgb
+
+
 
 URxvt*termName:		rxvt-256color
 URxvt.depth:		32
@@ -25,6 +27,8 @@ URxvt.perl-ext:
 URxvt.url-launcher:	chromium
 URxvt.matcher.button:	1
 
+
+
 rofi.color-enabled:	true
 rofi.color-window:	V_background,	V_color3,	V_color3
 rofi.color-normal:	V_background,	V_foreground,	V_color3,	V_color9,	V_foreground
@@ -36,6 +40,46 @@ rofi.font:		Iosevka Nerd Font Mono 18
 rofi.bw:		3
 rofi.seperator-style:	solid
 rofi.hide-scrollbar:	true
+
+
+
+xscreensaver.splash: false
+
+!font settings
+xscreensaver.Dialog.headingFont:        -*-dina-bold-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-dina-bold-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-dina-bold-r-*-*-13-*-*-*-*-*-*-*
+
+!dialog text
+xscreensaver.Dialog.heading:            
+
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         V_color3
+xscreensaver.Dialog.background:         V_background
+xscreensaver.Dialog.topShadowColor:     V_background
+xscreensaver.Dialog.bottomShadowColor:  V_background
+xscreensaver.Dialog.Button.foreground:  V_background
+xscreensaver.Dialog.Button.background:  V_foreground
+
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    V_color0
+xscreensaver.Dialog.text.background:    V_foreground
+xscreensaver.Dialog.internalBorderWidth:24
+xscreensaver.Dialog.borderWidth:        0
+xscreensaver.Dialog.shadowThickness:    2
+
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  V_color3
+xscreensaver.passwd.thermometer.background:  V_background
+xscreensaver.passwd.thermometer.width:       8
+
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
+
 
 
 ! termColors
