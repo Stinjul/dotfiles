@@ -260,7 +260,8 @@ client.focused_inactive	$black		$black		$white		$darkblack	$darkblack
 client.urgent		$darkred	$darkred	$black		$red		$darkred
 client.background	$black
 
-bindsym $mod+Shift+x exec ~/scripts/i3lock.sh
+#bindsym $mod+Shift+x exec ~/scripts/i3lock.sh
+bindsym $mod+Shift+x exec xscreensaver-command -lock
 
 exec --no-startup-id xscreensaver -no-splash
 exec --no-startup-id mpd

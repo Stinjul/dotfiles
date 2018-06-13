@@ -4,7 +4,7 @@
 width = 100%
 height = 18
 
-;monitor = ${env:MONITOR:eDP-1}
+#monitor = ${env:MONITOR:eDP-1}
 
 background = ${xrdb:*.background}
 foreground = ${xrdb:*.foreground}
@@ -13,48 +13,36 @@ fixed-center = true
 
 font-0 = Iosevka Nerd Font:pixelsize=11;2
 
-modules-left = i3 space2l mpd space1l
+modules-left = i3 divIL mpd divL
 modules-center = weather
-modules-right = space1 wireless-network space2 cpu space1 memory space2 temperature space1 volume space2 backlight space1 battery space2 date space1 powermenu
+modules-right = divR wired-network wireless-network divIR cpu divR memory divIR temperature divR volume divIR backlight divR battery divIR date divR powermenu
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-[module/space1]
+[module/divR]
 type = custom/text
 content = ""
 
 content-background = ${xrdb:*.background}
 content-foreground = ${xrdb:*.color3}
 
-[module/space1l]
+[module/divL]
+inherit = module/divR
 type = custom/text
 content = ""
 
-content-background = ${xrdb:*.background}
-content-foreground = ${xrdb:*.color3}
-
-
-[module/space2]
+[module/divIR]
 type = custom/text
 content = ""
 
 content-background = ${xrdb:*.color3}
 content-foreground = ${xrdb:*.background}
 
-[module/space2l]
+[module/divIL]
+inherit = module/divIR
 type = custom/text
 content = ""
-
-content-background = ${xrdb:*.color3}
-content-foreground = ${xrdb:*.background}
-
-[module/space1t]
-type = custom/text
-content = ""
-
-content-background = #000000ff
-content-foreground = #000000ff
 
 
 [module/i3]
@@ -102,10 +90,10 @@ icon-next = 
 #icon-pause =
 #icon-next = ->
 
-;bar-progress-width = 45
-;bar-progress-indicator = |
-;bar-progress-fill = -
-;bar-progress-empty = -
+#bar-progress-width = 45
+#bar-progress-indicator = |
+#bar-progress-fill = -
+#bar-progress-empty = -
 
 label-song =  %artist% - %title%
 label-song-maxlen = 70
@@ -131,7 +119,8 @@ format = <label>
 format-padding = 1
 format-background = ${xrdb:*.color3}
 
-label =  %gb_used% (%percentage_used%%)
+label =  %gb_used%
+#label =  %gb_used% (%percentage_used%%)
 
 
 [module/temperature]
@@ -181,7 +170,7 @@ label =  %date% %time%
 [module/battery]
 type = internal/battery
 
-full-at = 97
+full-at = 96
 
 battery = BAT1
 adapter = ADP1
@@ -221,15 +210,27 @@ animation-charging-4 = 
 animation-charging-framerate = 500
 
 
+#[module/backlight]
+#type = internal/backlight
+#
+#card = intel_backlight
+#
+#format = <label>
+#format-padding = 1
+#
+#label =  %percentage%%
+
 [module/backlight]
-type = internal/backlight
+type = custom/script
 
-card = intel_backlight
-
-format = <label>
+interval = 1
+exec = xbacklight -get
 format-padding = 1
 
-label =  %percentage%%
+label =  %output%%
+
+click-left = xbacklight -inc 5
+click-right = xbacklight -dec 5
 
 
 #[module/pavolume]
@@ -269,7 +270,7 @@ ramp-volume-2 = 
 ramp-headphones-0 = 
 ramp-headphones-1 = 
 
-label-muted =  muted
+label-muted = 
 format-muted-background = ${xrdb:*.color3}
 format-muted-padding = 1
 
@@ -346,28 +347,40 @@ format-padding = 2
 
 exec = ~/scripts/openweathermap-detailed.sh
 
+[module/wired-network]
+type = internal/network
+
+interface = enp4s0
+
+format-connected = " "
+format-connected-foreground = ${xrdb:*.color10}
+format-connected-background = ${xrdb:*.color3}
+
+format-disconnected = " "
+format-disconnected-foreground = ${xrdb:*.color1}
+format-disconnected-background = ${xrdb:*.color3}
+
 
 [module/wireless-network]
 type = internal/network
 
 interface = wlp5s0
 
-format-connected = "<ramp-signal> <label-connected>"
+format-connected = "<ramp-signal> <label-connected> "
 format-connected-background = ${xrdb:*.color3}
-format-connected-padding = 1
 
-format-disconnected = <label-disconnected>
+format-disconnected = "睊 "
+format-disconnected-foreground = ${xrdb:*.color1}
+format-disconnected-background = ${xrdb:*.color3}
 
 label-connected = %essid%
 
-label-disconnected = None
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-5 = 
+ramp-signal-0 = 直
+ramp-signal-1 = 直
+ramp-signal-2 = 直
+ramp-signal-3 = 直
+ramp-signal-4 = 直
+ramp-signal-5 = 直
 
 ramp-signal-0-foreground = ${xrdb:*.color1}
 ramp-signal-1-foreground = ${xrdb:*.color11}
