@@ -1,8 +1,12 @@
 title >(((°>
 launch fish
+#new_tab weechat
+#launch fish -c weechat
 new_tab htop
-launch htop
+launch fish -c htop
 new_tab ranger
-launch ranger
+launch fish -c ranger
+new_tab ncmpcpp
+launch fish -c musicPlayer
 new_tab calcurse
-launch calcurse
+launch fish -c calcurse

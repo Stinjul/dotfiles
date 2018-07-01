@@ -1,5 +1,6 @@
 set -x PATH $PATH /usr/local/bin $HOME/.local/bin /opt/bin
 set -gx MANPAGER "nvim -c 'set ft=man' -"
+set -gx EDITOR "nvim"
 
 set -g theme_display_user yes
 set -g theme_display_hostname yes

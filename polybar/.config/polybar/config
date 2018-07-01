@@ -59,6 +59,9 @@ label-separator-foreground = ${xrdb:*.color3}
 
 format = <label-state>
 
+label-visible-foreground = ${xrdb:*.color2}
+label-visible-padding = 1
+
 label-unfocused-foreground = ${xrdb:*.color7}
 label-unfocused-padding = 1
 
@@ -138,9 +141,9 @@ format-padding = 1
 format-warn = <ramp> <label-warn>
 format-warn-padding = 1
 
-label = %temperature%
+label = %temperature-c%
 
-label-warn = %temperature%
+label-warn = %temperature-c%
 label-warn-foreground = ${xrdb:*.color1}
 
 ramp-0 = 
@@ -232,6 +235,8 @@ label =  %output%%
 click-left = xbacklight -inc 5
 click-right = xbacklight -dec 5
 
+scroll-up = xbacklight -inc 5
+scroll-down = xbacklight -dec 5
 
 #[module/pavolume]
 #type = custom/script

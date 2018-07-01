@@ -1,9 +1,7 @@
-[submodule "vim/.vim/bundle/nerdtree"]
-	path = vim/.vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
 [submodule "vim/.vim/bundle/Colorizer"]
 	path = vim/.vim/bundle/Colorizer
-	url = https://github.com/chrisbra/Colorizer.git
+    url = https://github.com/chrisbra/Colorizer.git
+    ignore = untracked
 [submodule "vim/.vim/bundle/Nvim-R"]
 	path = vim/.vim/bundle/Nvim-R
 	url = https://github.com/jalvesaq/Nvim-R.git
@@ -22,3 +20,9 @@
 [submodule "vim/.vim/bundle/vim-surround"]
 	path = vim/.vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/.vim/bundle/vim-airline"]
+	path = vim/.vim/bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "vim/.vim/bundle/vim-airline-themes"]
+	path = vim/.vim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git

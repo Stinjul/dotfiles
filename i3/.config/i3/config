@@ -119,7 +119,7 @@ set $w6 6:6
 set $w7 7:7
 set $w8 8:8
 set $w9 9:9
-set $w10 10:
+set $w10 10:#IRC
 
 # Switch to workspace
 bindsym $mod+1 workspace $w1
@@ -260,10 +260,10 @@ client.focused_inactive	$black		$black		$white		$darkblack	$darkblack
 client.urgent		$darkred	$darkred	$black		$red		$darkred
 client.background	$black
 
-#bindsym $mod+Shift+x exec ~/scripts/i3lock.sh
-bindsym $mod+Shift+x exec xscreensaver-command -lock
+bindsym $mod+Shift+x exec ~/scripts/i3lock.sh
+#bindsym $mod+Shift+x exec xscreensaver-command -lock
 
-exec --no-startup-id xscreensaver -no-splash
+#exec --no-startup-id xscreensaver -no-splash
 exec --no-startup-id mpd
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/wallpaper1.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -273,11 +273,7 @@ exec --no-startup-id /usr/lib/libexec/kdeconnectd
 exec --no-startup-id calcurse-caldav --init=keep-remote
 exec --no-startup-id calcurse --daemon
 
-exec --no-startup-id i3-msg 'workspace $w10; exec kitty --name music_player ncmpcpp -s visualizer -S visualizer'
-exec --no-startup-id i3-msg 'workspace $w1; exec kitty --name main_term'
-
-assign [instance="main_term"] $w1
-assign [instance="music_player"] $w10
+exec --no-startup-id i3-msg 'workspace $w1; exec kitty --name main_term; workspace $w10; exec kitty weechat; workspace $w1'
 
 ### Window stuff ###
 for_window [class="^.*"] border pixel 3

@@ -32,13 +32,10 @@ let g:colorizer_auto_color=1
 " Enable relativenumber only on focused window
 set number relativenumber
 augroup numbertoggle
-	autocmd!
-	autocmd BufEnter,FocusGained,InsertLeave	* set relativenumber
-	autocmd BufLeave,FocusLost,InsertEnter		* set norelativenumber
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave    * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter      * set norelativenumber
 augroup END
-
-" Toggle NERDTree
-map <C-n> :NERDTreeToggle<CR>
 
 " Toggle spellcheck
 map <F6> :setlocal spell! spelllang=en_gb,en_us,nl<CR>
@@ -52,43 +49,47 @@ let g:pandoc#modules#disabled = ["spell"]
 "refresh mupdf
 command RefreshMuPDF silent !xdotool key --window $(xdotool search --pid $(ps -C mupdf -o pid=)) r
 
+"Airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme='term'
+
 " Luke smith .vimrc stuff
 " https://github.com/LukeSmithxyz/voidrice/blob/master/.vimrc
 
 " Navigating with guides
-	inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-	vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-	map <Space><Tab> <Esc>/<++><Enter>"_c4l
+    inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+    vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+    map <Space><Tab> <Esc>/<++><Enter>"_c4l
 inoremap ;gui <++>
 
 """.bib
-	autocmd FileType bib inoremap ;a @article{<Enter>author<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>journal<Space>=<Space>"<++>",<Enter>volume<Space>=<Space>"<++>",<Enter>pages<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>8kA,<Esc>i
-	autocmd FileType bib inoremap ;b @book{<Enter>author<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>publisher<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>6kA,<Esc>i
-	autocmd FileType bib inoremap ;c @incollection{<Enter>author<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>booktitle<Space>=<Space>"<++>",<Enter>editor<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>publisher<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>8kA,<Esc>i
+    autocmd FileType bib inoremap ;a @article{<Enter>author<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>journal<Space>=<Space>"<++>",<Enter>volume<Space>=<Space>"<++>",<Enter>pages<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>8kA,<Esc>i
+    autocmd FileType bib inoremap ;b @book{<Enter>author<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>publisher<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>6kA,<Esc>i
+    autocmd FileType bib inoremap ;c @incollection{<Enter>author<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>booktitle<Space>=<Space>"<++>",<Enter>editor<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>publisher<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>8kA,<Esc>i
 
 """LATEX
-	" Word count:
-	autocmd FileType tex map <F3> :w !detex \| wc -w<CR>
-	autocmd FileType tex inoremap <F3> <Esc>:w !detex \| wc -w<CR>
-	" Compile document using luatex:
-	autocmd FileType tex inoremap <F5> <Esc>:w<Enter>:!lualatex<space><c-r>%<Enter>:RefreshMuPDF<Enter>:startinsert<Enter>
-	autocmd FileType tex nnoremap <F5> :w<Enter>:!lualatex<space><c-r>%<Enter>:RefreshMuPDF<Enter>
+    " Word count:
+    autocmd FileType tex map <F3> :w !detex \| wc -w<CR>
+    autocmd FileType tex inoremap <F3> <Esc>:w !detex \| wc -w<CR>
+    " Compile document using luatex:
+    autocmd FileType tex inoremap <F5> <Esc>:w<Enter>:!lualatex<space><c-r>%<Enter>:RefreshMuPDF<Enter>:startinsert<Enter>
+    autocmd FileType tex nnoremap <F5> :w<Enter>:!lualatex<space><c-r>%<Enter>:RefreshMuPDF<Enter>
 
 "MARKDOWN
-	autocmd Filetype markdown,rmd inoremap ;n ---<Enter><Enter>
-	autocmd Filetype markdown,rmd inoremap ;b ****<++><Esc>F*hi
-	autocmd Filetype markdown,rmd inoremap ;s ~~~~<++><Esc>F~hi
-	autocmd Filetype markdown,rmd inoremap ;e **<++><Esc>F*i
-	autocmd Filetype markdown,rmd inoremap ;h ====<Space><++><Esc>F=hi
-	autocmd Filetype markdown,rmd inoremap ;i ![](<++>)<++><Esc>F[a
-	autocmd Filetype markdown,rmd inoremap ;a [](<++>)<++><Esc>F[a
-	autocmd Filetype markdown,rmd inoremap ;1 #<Space><Enter><++><Esc>kA
-	autocmd Filetype markdown,rmd inoremap ;2 ##<Space><Enter><++><Esc>kA
-	autocmd Filetype markdown,rmd inoremap ;3 ###<Space><Enter><++><Esc>kA
-	autocmd Filetype markdown,rmd inoremap ;l --------<Enter>
-	autocmd Filetype markdown map <F5> :!pandoc<space><C-r>%<space>-o<space><C-r>%.pdf<Enter><Enter>
-	"autocmd Filetype rmd map <F5> :w<Enter>:!echo<space>"require(rmarkdown);<space>render('<c-r>%',intermediates_dir<space>=<space>'~/Documents/School/templates/')"<space>\|<space>R<space>--vanilla<enter>:RefreshMuPDF<Enter>
-	"autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
-	autocmd Filetype rmd map <F5> :w<Enter>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>:RefreshMuPDF<Enter>
-	autocmd Filetype rmd inoremap ;r ```{r,<space>echo=TRUE}<CR>```<CR><CR><esc>2kO
+    autocmd Filetype markdown,rmd inoremap ;n ---<Enter><Enter>
+    autocmd Filetype markdown,rmd inoremap ;b ****<++><Esc>F*hi
+    autocmd Filetype markdown,rmd inoremap ;s ~~~~<++><Esc>F~hi
+    autocmd Filetype markdown,rmd inoremap ;e **<++><Esc>F*i
+    autocmd Filetype markdown,rmd inoremap ;h ====<Space><++><Esc>F=hi
+    autocmd Filetype markdown,rmd inoremap ;i ![](<++>)<++><Esc>F[a
+    autocmd Filetype markdown,rmd inoremap ;a [](<++>)<++><Esc>F[a
+    autocmd Filetype markdown,rmd inoremap ;1 #<Space><Enter><++><Esc>kA
+    autocmd Filetype markdown,rmd inoremap ;2 ##<Space><Enter><++><Esc>kA
+    autocmd Filetype markdown,rmd inoremap ;3 ###<Space><Enter><++><Esc>kA
+    autocmd Filetype markdown,rmd inoremap ;l --------<Enter>
+    autocmd Filetype markdown map <F5> :!pandoc<space><C-r>%<space>-o<space><C-r>%.pdf<Enter><Enter>
+    "autocmd Filetype rmd map <F5> :w<Enter>:!echo<space>"require(rmarkdown);<space>render('<c-r>%',intermediates_dir<space>=<space>'~/Documents/School/templates/')"<space>\|<space>R<space>--vanilla<enter>:RefreshMuPDF<Enter>
+    "autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+    autocmd Filetype rmd map <F5> :w<Enter>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>:RefreshMuPDF<Enter>
+    autocmd Filetype rmd inoremap ;r ```{r,<space>echo=TRUE}<CR>```<CR><CR><esc>2kO
 
