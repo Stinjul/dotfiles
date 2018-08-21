@@ -26,3 +26,9 @@
 [submodule "vim/.vim/bundle/vim-airline-themes"]
 	path = vim/.vim/bundle/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "vim/.vim/bundle/ale"]
+	path = vim/.vim/bundle/ale
+	url = https://github.com/w0rp/ale.git
+[submodule "vim/.vim/bundle/deoplete"]
+	path = vim/.vim/bundle/deoplete
+	url = https://github.com/Shougo/deoplete.nvim.git

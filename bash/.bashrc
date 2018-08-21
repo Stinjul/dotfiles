@@ -14,5 +14,7 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
+
 # Put your fun stuff here.
-export PATH=$PATH:~/bin
+source /etc/profile
+[ -x /bin/fish ] && SHELL=/bin/fish exec /bin/fish

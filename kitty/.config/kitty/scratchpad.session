@@ -1,12 +1,12 @@
 title >(((°>
-launch fish
+launch bash
 #new_tab weechat
-#launch fish -c weechat
+#launch
 new_tab htop
-launch fish -c htop
+launch htop
 new_tab ranger
-launch fish -c ranger
+launch ranger
 new_tab ncmpcpp
 launch fish -c musicPlayer
-new_tab calcurse
-launch fish -c calcurse
+#new_tab calcurse
+#launch calcurse

@@ -1,28 +1,35 @@
-*.foreground:	#f1efee
-*.cursor:	#a8a19f
-*.background:	#1b1918
+#define V_foreground #f1efee
+#define V_cursor #a8a19f
+#define V_background #1b1918
 
-! black
-*.color0:	#1b1918
-*.color8:	#766e6b
-! red
-*.color1:	#dd0e23
-*.color9:	#f22c40
-! green
-*.color2:	#47902c
-*.color10:	#5ab738
-! yellow
-*.color3:	#a87214
-*.color11:	#d5911a
-! blue
-*.color4:	#1b62d9
-*.color12:	#407ee7
-! magenta
-*.color5:	#7B39e4
-*.color13:	#9966ea
-! cyan
-*.color6:	#007a6e
-*.color14:	#00ad9c
-! white
-*.color7:	#a8a19f
-*.color15:	#f1efee
+!black
+#define V_color0	#312f2f
+#define V_color8	#766e6b
+
+!red
+#define V_color1	#dd0e23
+#define V_color9	#f22c40
+
+!green
+#define V_color2	#47902c
+#define V_color10	#5ab738
+
+!yellow
+#define V_color3	#a87214
+#define V_color11	#d5911a
+
+!blue
+#define V_color4	#1b62d9
+#define V_color12	#407ee7
+
+!magenta
+#define V_color5	#7B39e4
+#define V_color13	#9966ea
+
+!cyan
+#define V_color6	#007a6e
+#define V_color14	#00ad9c
+
+!white
+#define V_color7	#a8a19f
+#define V_color15	#f1efee

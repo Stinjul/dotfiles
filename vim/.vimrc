@@ -16,6 +16,9 @@ set vb t_vb=
 set backup
 syntax on
 
+"Show certain chars
+set listchars=nbsp:␣
+
 " Tabs
 set tabstop=4
 set shiftwidth=4
@@ -49,9 +52,24 @@ let g:pandoc#modules#disabled = ["spell"]
 "refresh mupdf
 command RefreshMuPDF silent !xdotool key --window $(xdotool search --pid $(ps -C mupdf -o pid=)) r
 
+"SudoWrite
+command -nargs=0 Sw w !sudo tee % > /dev/null
+
 "Airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme='term'
+set noshowmode
+
+"Colors
+hi VertSplit ctermfg=3
+set fillchars+=vert:┃
+hi StatusLine ctermfg=233
+hi StatusLineNC ctermfg=233
+hi SpellBad ctermbg=9
+hi SpellCap ctermbg=12
+hi SpellLocal ctermbg=14
+hi SpellRare ctermbg=13
+
 
 " Luke smith .vimrc stuff
 " https://github.com/LukeSmithxyz/voidrice/blob/master/.vimrc

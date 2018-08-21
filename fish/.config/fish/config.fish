@@ -23,3 +23,5 @@ alias shuffle 'mpc shuffle'
 alias playMain 'mpc load Main ; mpc shuffle ; mpc play'
 
 alias musicPlayer 'ncmpcpp -s visualizer -S playlist'
+
+alias pipUpdate 'pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
