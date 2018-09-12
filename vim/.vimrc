@@ -29,6 +29,9 @@ set expandtab
 set wildmode=longest,list,full
 set wildmenu
 
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
 " Colorizer
 let g:colorizer_auto_color=1
 
