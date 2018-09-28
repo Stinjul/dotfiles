@@ -32,6 +32,13 @@ set wildmenu
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
+" grammarous
+let g:grammarous#show_first_error=1
+map <F7> :GrammarousCheck --lang=
+"let g:grammarous#disabled_categories = {'*' : ['TYPOS']}
+let g:grammarous#disabled_rules = {'*' : ['MORFOLOGIK_RULE_NL_NL']}
+"let g:grammarous#enable_spell_check=0
+
 " Colorizer
 let g:colorizer_auto_color=1
 
@@ -44,7 +51,7 @@ augroup numbertoggle
 augroup END
 
 " Toggle spellcheck
-map <F6> :setlocal spell! spelllang=en_gb,en_us,nl<CR>
+map <F6> :setlocal spell! spelllang=en_gb,nl<CR>
 
 " No newline comment
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -60,7 +67,7 @@ command -nargs=0 Sw w !sudo tee % > /dev/null
 
 "Airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme='term'
+let g:airline_theme='myterm'
 set noshowmode
 
 "Colors

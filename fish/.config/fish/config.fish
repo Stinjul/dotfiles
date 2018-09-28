@@ -12,7 +12,7 @@ alias texclean='~/scripts/clean-latex.sh'
 alias pipes='~/scripts/pipes.sh'
 function rmdDoc
 	cp ~/Documents/School/templates/tmTemplateDoc.rmd $argv
-	vim $argv
+	nvim $argv
 end
 funcsave rmdDoc
 
