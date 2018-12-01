@@ -1,43 +1,51 @@
 [submodule "vim/.vim/bundle/Colorizer"]
-	path = vim/.vim/bundle/Colorizer
+    path = vim/.vim/bundle/Colorizer
     url = https://github.com/chrisbra/Colorizer.git
     ignore = untracked
 [submodule "vim/.vim/bundle/Nvim-R"]
-	path = vim/.vim/bundle/Nvim-R
-	url = https://github.com/jalvesaq/Nvim-R.git
+    path = vim/.vim/bundle/Nvim-R
+    url = https://github.com/jalvesaq/Nvim-R.git
 [submodule "vim/.vim/bundle/vim-pandoc"]
-	path = vim/.vim/bundle/vim-pandoc
-	url = https://github.com/vim-pandoc/vim-pandoc.git
+    path = vim/.vim/bundle/vim-pandoc
+    url = https://github.com/vim-pandoc/vim-pandoc.git
 [submodule "vim/.vim/bundle/vim-pandoc-syntax"]
-	path = vim/.vim/bundle/vim-pandoc-syntax
-	url = https://github.com/vim-pandoc/vim-pandoc-syntax.git
+    path = vim/.vim/bundle/vim-pandoc-syntax
+    url = https://github.com/vim-pandoc/vim-pandoc-syntax.git
 [submodule "vim/.vim/bundle/vim-ps1"]
-	path = vim/.vim/bundle/vim-ps1
-	url = https://github.com/PProvost/vim-ps1.git
+    path = vim/.vim/bundle/vim-ps1
+    url = https://github.com/PProvost/vim-ps1.git
 [submodule "vim/.vim/bundle/vim-rmarkdown"]
-	path = vim/.vim/bundle/vim-rmarkdown
-	url = https://github.com/vim-pandoc/vim-rmarkdown.git
+    path = vim/.vim/bundle/vim-rmarkdown
+    url = https://github.com/vim-pandoc/vim-rmarkdown.git
 [submodule "vim/.vim/bundle/vim-surround"]
-	path = vim/.vim/bundle/vim-surround
-	url = https://github.com/tpope/vim-surround.git
+    path = vim/.vim/bundle/vim-surround
+    url = https://github.com/tpope/vim-surround.git
 [submodule "vim/.vim/bundle/vim-airline"]
-	path = vim/.vim/bundle/vim-airline
-	url = https://github.com/vim-airline/vim-airline.git
+    path = vim/.vim/bundle/vim-airline
+    url = https://github.com/vim-airline/vim-airline.git
 [submodule "vim/.vim/bundle/vim-airline-themes"]
-	path = vim/.vim/bundle/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes.git
-[submodule "vim/.vim/bundle/ale"]
-	path = vim/.vim/bundle/ale
-	url = https://github.com/w0rp/ale.git
+    path = vim/.vim/bundle/vim-airline-themes
+    url = https://github.com/vim-airline/vim-airline-themes.git
 [submodule "vim/.vim/bundle/deoplete"]
-	path = vim/.vim/bundle/deoplete
-	url = https://github.com/Shougo/deoplete.nvim.git
+    path = vim/.vim/bundle/deoplete
+    url = https://github.com/Shougo/deoplete.nvim.git
 [submodule "vim/.vim/bundle/vim-fugitive"]
-	path = vim/.vim/bundle/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
+    path = vim/.vim/bundle/vim-fugitive
+    url = https://github.com/tpope/vim-fugitive
 [submodule "vim/.vim/bundle/vim-gitgutter"]
-	path = vim/.vim/bundle/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter
+    path = vim/.vim/bundle/vim-gitgutter
+    url = https://github.com/airblade/vim-gitgutter
+[submodule "vim/.vim/bundle/gentoo-syntax"]
+    path = vim/.vim/bundle/gentoo-syntax
+    url = https://github.com/gentoo/gentoo-syntax
+    ignore = dirty
+[submodule "vim/.vim/bundle/vimsence"]
+    path = vim/.vim/bundle/vimsence
+    url = https://github.com/anned20/vimsence
+[submodule "vim/.vim/bundle/LanguageClient-neovim"]
+    path = vim/.vim/bundle/LanguageClient-neovim
+    url = https://github.com/autozimu/LanguageClient-neovim
+    branch = next
 [submodule "vim/.vim/bundle/vim-grammarous"]
 	path = vim/.vim/bundle/vim-grammarous
 	url = https://github.com/rhysd/vim-grammarous

@@ -118,7 +118,7 @@ set $w5 5:
 set $w6 6:6
 set $w7 7:7
 set $w8 8:8
-set $w9 9:9
+set $w9 9:
 set $w10 10:#IRC
 
 # Switch to workspace
@@ -159,6 +159,9 @@ bindsym $mod+KP_Add exec "mpc volume +2"
 bindsym $mod+KP_Subtract exec "mpc volume -2"
 bindsym $mod+KP_Multiply exec "mpc toggle"
 
+bindsym --release $mod+Shift+s exec "scrot -s"
+
+
 # resize window (you can also use the mouse for that)
 #mode "resize" {
 #        # These bindings trigger as soon as you enter the resize mode
@@ -186,11 +189,11 @@ bindsym $mod+KP_Multiply exec "mpc toggle"
 #bindsym $mod+r mode "resize"
 
 
-#  i3-gaps settings 
+#  i3-gaps settings
 #  More info visit: https://github.com/Airblader/i3
 # Uncomment bellow lines if your using i3-gaps
 
-smart_gaps on     
+smart_gaps on
 smart_borders on
 
 #Global gaps size
@@ -273,7 +276,7 @@ exec --no-startup-id mpd
 exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/gurren-lagann-wallpaper.jpg
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id qlipper
-exec --no-startup-id compton --config ~/.config/compton.conf
+exec_always --no-startup-id $HOME/.config/compton.sh 
 exec --no-startup-id /usr/lib/libexec/kdeconnectd
 exec --no-startup-id calcurse-caldav --init=keep-remote
 exec --no-startup-id calcurse --daemon
@@ -295,6 +298,7 @@ for_window [class="Pavucontrol"] floating enable
 ### automove app to workspace ###
 assign [class="^Firefox$"]			$w4
 assign [class="^(?i)libreoffice.*"]		$w5
+assign [class="^discord$"]			$w9
 
 ### Scratchpad ###
 bindsym $mod+Shift+Return [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center

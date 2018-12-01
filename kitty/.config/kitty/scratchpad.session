@@ -8,5 +8,7 @@ new_tab ranger
 launch ranger
 new_tab ncmpcpp
 launch fish -c musicPlayer
+new_tab neomutt
+launch neomutt
 #new_tab calcurse
 #launch calcurse
