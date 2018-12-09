@@ -271,6 +271,8 @@ client.background	$black
 bindsym $mod+Shift+x exec ~/scripts/i3lock.sh
 #bindsym $mod+Shift+x exec xscreensaver-command -lock
 
+bindsym $mod+Shift+m exec ~/scripts/monitor_layout.sh
+
 #exec --no-startup-id xscreensaver -no-splash
 exec --no-startup-id mpd
 exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/gurren-lagann-wallpaper.jpg

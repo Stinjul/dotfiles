@@ -56,6 +56,8 @@ augroup END
 " LC-neovim
 let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ 'python': ['pyls']
     \ }
 let g:LanguageClient_autoStart = 1

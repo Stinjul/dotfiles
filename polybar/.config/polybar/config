@@ -20,33 +20,55 @@ modules-right = divR wired-network wireless-network divIR cpu divR memory divIR 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
+[module/basecolor]
+primary = ${xrdb:*.background}
+secondary = ${xrdb:*.color3}
+format-background = ${self.primary}
+
+[module/basecolor2]
+primary = ${xrdb:*.color3}
+secondary = ${xrdb:*.background}
+format-background = ${self.primary}
+
 [module/divR]
 type = custom/text
+inherit = module/basecolor
 content = ""
 
-content-background = ${xrdb:*.background}
-content-foreground = ${xrdb:*.color3}
+content-background = ${self.primary}
+content-foreground = ${self.secondary}
 
 [module/divL]
-inherit = module/divR
 type = custom/text
+## Until there is nested inheritance I wont be able to just inherit divR
+#inherit = module/divR
+inherit = module/basecolor
 content = ""
+
+content-background = ${self.primary}
+content-foreground = ${self.secondary}
 
 [module/divIR]
 type = custom/text
+inherit = module/basecolor2
 content = ""
 
-content-background = ${xrdb:*.color3}
-content-foreground = ${xrdb:*.background}
+content-background = ${self.primary}
+content-foreground = ${self.secondary}
 
 [module/divIL]
-inherit = module/divIR
 type = custom/text
+## Same deal as with divL
+#inherit = module/divIR
+inherit = module/basecolor2
 content = ""
 
+content-background = ${self.primary}
+content-foreground = ${self.secondary}
 
 [module/i3]
 type = internal/i3
+inherit = module/basecolor
 
 pin-workspaces = true
 strip-wsnumbers = true
@@ -54,30 +76,35 @@ index-sort = true
 enable-scroll = false
 
 label-separator = "" 
-label-separator-background = ${xrdb:*.background}
-label-separator-foreground = ${xrdb:*.color3}
+label-separator-background = ${self.primary}
+label-separator-foreground = ${self.secondary}
 
 format = <label-state>
 
 label-visible-foreground = ${xrdb:*.color2}
+label-visible-background = ${self.primary}
 label-visible-padding = 1
 
 label-unfocused-foreground = ${xrdb:*.color7}
+label-unfocused-background = ${self.primary}
 label-unfocused-padding = 1
 
 label-focused-foreground = ${xrdb:*.color9}
+label-focused-background = ${self.primary}
 label-focused-padding = 1
 
-label-urgent-foreground = ${xrdb:*.color3}
+label-urgent-foreground = ${self.secondary}
+label-urgent-background = ${self.primary}
 label-urgent-padding = 1
 
 [module/mpd]
 type = internal/mpd
+inherit = module/basecolor2
 format-online = <label-song> <label-time> <icon-prev> <toggle> <icon-stop> <icon-next>
-format-online-background = ${xrdb:*.color3}
+format-online-background = ${self.primary}
 format-online-padding = 1
 format-offline = MPD is ded
-format-offline-background = ${xrdb:*.color3}
+format-offline-background = ${self.primary}
 format-offline-padding = 1
 #<toggle>
 
@@ -104,6 +131,7 @@ label-song-ellipsis = true
 
 [module/cpu]
 type = internal/cpu
+inherit = module/basecolor
 
 interval = 1
 
@@ -115,12 +143,12 @@ label = " %percentage%%"
 
 [module/memory]
 type = internal/memory
+inherit = module/basecolor2
 
 interval = 1
 
 format = <label>
 format-padding = 1
-format-background = ${xrdb:*.color3}
 
 label =  %gb_used%
 #label =  %gb_used% (%percentage_used%%)
@@ -128,6 +156,7 @@ label =  %gb_used%
 
 [module/temperature]
 type = internal/temperature
+inherit = module/basecolor
 
 interval = 1
 
@@ -155,6 +184,7 @@ ramp-4 = 
 
 [module/date]
 type = internal/date
+inherit = module/basecolor
 
 interval = 1
 
@@ -172,6 +202,7 @@ label =  %date% %time%
 
 [module/battery]
 type = internal/battery
+inherit = module/basecolor2
 
 full-at = 96
 
@@ -180,7 +211,7 @@ adapter = ADP1
 
 poll-interval = 5
 
-format-charging-background = ${xrdb:*.color3}
+format-charging-background = ${self.primary}
 format-discharging-background = ${self.format-charging-background}
 format-full-background = ${self.format-charging-background}
 
@@ -225,6 +256,7 @@ animation-charging-framerate = 500
 
 [module/backlight]
 type = custom/script
+inherit = module/basecolor
 
 interval = 1
 exec = xbacklight -get
@@ -256,9 +288,10 @@ scroll-down = xbacklight -dec 5
 
 [module/volume]
 type = internal/alsa
+inherit = module/basecolor2
 
 format-volume = <ramp-volume> <label-volume>
-format-volume-background = ${xrdb:*.color3}
+format-volume-background = ${self.primary}
 format-volume-padding = 1
 
 label-volume = %percentage%%
@@ -276,7 +309,7 @@ ramp-headphones-0 = 
 ramp-headphones-1 = 
 
 label-muted = 
-format-muted-background = ${xrdb:*.color3}
+format-muted-background = ${self.format-volume-background}
 format-muted-padding = 1
 
 master-soundcard = hw:1
@@ -297,24 +330,25 @@ mapped = true
 
 [module/powermenu]
 type = custom/menu
+inherit = module/basecolor2
 
 label-open =   
-label-open-background = ${xrdb:*.color3}
+label-open-background = ${self.primary}
 
 label-close = cancel
 
 label-separator = "" 
-label-separator-background = ${xrdb:*.color3}
-label-separator-foreground = ${xrdb:*.background}
+label-separator-background = ${self.primary}
+label-separator-foreground = ${self.secondary}
 
-label-close-background = ${xrdb:*.color3}
+label-close-background = ${self.primary}
 label-close-foreground = ${xrdb:*.foreground}
 label-open-padding = 3
 label-close-padding = 1
 
 menu-0-0 = lock
 menu-0-0-exec = ~/scripts/i3lock.sh
-menu-0-0-background = ${xrdb:*.color3}
+menu-0-0-background = ${self.primary}
 menu-0-0-foreground = ${xrdb:*.foreground}
 menu-0-0-padding = 1
 
@@ -332,7 +366,7 @@ menu-0-2-padding = ${self.menu-0-0-padding}
 
 menu-1-0 = reboot?  
 menu-1-0-exec = sudo reboot
-menu-1-0-background = ${xrdb:*.color3}
+menu-1-0-background = ${self.primary}
 menu-1-0-foreground = ${xrdb:*.color9}
 menu-1-0-padding = ${self.menu-0-0-padding}
 
@@ -345,6 +379,7 @@ menu-2-0-padding = ${self.menu-0-0-padding}
 
 [module/weather]
 type = custom/script
+inherit = module/basecolor
 
 interval = 120
 
@@ -354,29 +389,31 @@ exec = ~/scripts/openweathermap-detailed.sh
 
 [module/wired-network]
 type = internal/network
+inherit = module/basecolor2
 
 interface = enp4s0
 
 format-connected = " "
 format-connected-foreground = ${xrdb:*.color10}
-format-connected-background = ${xrdb:*.color3}
+format-connected-background = ${self.primary}
 
 format-disconnected = " "
 format-disconnected-foreground = ${xrdb:*.color1}
-format-disconnected-background = ${xrdb:*.color3}
+format-disconnected-background = ${self.format-connected-background}
 
 
 [module/wireless-network]
 type = internal/network
+inherit = module/basecolor2
 
 interface = wlp5s0
 
 format-connected = "<ramp-signal> <label-connected> "
-format-connected-background = ${xrdb:*.color3}
+format-connected-background = ${self.primary}
 
 format-disconnected = "睊 "
 format-disconnected-foreground = ${xrdb:*.color1}
-format-disconnected-background = ${xrdb:*.color3}
+format-disconnected-background = ${self.format-connected-background}
 
 label-connected = %essid%
 
