@@ -18,8 +18,8 @@ syntax on
 
 
 "Show certain chars
-set listchars=nbsp:␣
-
+set listchars=nbsp:␣,tab:>␣,trail:~
+set list
 
 " Tabs
 set expandtab
@@ -58,7 +58,8 @@ let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'python': ['pyls']
+    \ 'python': ['pyls'],
+    \ 'c': ['clangd']
     \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsDisplay = {
@@ -122,6 +123,7 @@ set noshowmode
 
 
 " Colors
+colorscheme peachpuff
 hi VertSplit ctermfg=3
 set fillchars+=vert:┃
 hi StatusLine ctermfg=233
@@ -130,6 +132,10 @@ hi SpellBad ctermbg=9
 hi SpellCap ctermbg=12
 hi SpellLocal ctermbg=14
 hi SpellRare ctermbg=13
+
+" Table Mode
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
 
 
 " Luke smith .vimrc stuff

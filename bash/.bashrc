@@ -10,11 +10,12 @@
 # past this point for scp and rcp, and it's important to refrain from
 # outputting anything in those cases.
 if [[ $- != *i* ]] ; then
-	# Shell is non-interactive.  Be done now!
-	return
+    # Shell is non-interactive.  Be done now!
+    return
 fi
 
+export SUDO_ASKPASS="$HOME/scripts/rofipass.sh"
 
 # Put your fun stuff here.
-source /etc/profile
+#source /etc/profile
 [ -x /bin/fish ] && SHELL=/bin/fish exec /bin/fish

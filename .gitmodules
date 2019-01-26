@@ -49,3 +49,9 @@
 [submodule "vim/.vim/bundle/vim-grammarous"]
 	path = vim/.vim/bundle/vim-grammarous
 	url = https://github.com/rhysd/vim-grammarous
+[submodule "vim/.vim/bundle/vim-table-mode"]
+	path = vim/.vim/bundle/vim-table-mode
+	url = https://github.com/dhruvasagar/vim-table-mode
+[submodule "vim/.vim/bundle/vim-fish"]
+	path = vim/.vim/bundle/vim-fish
+	url = https://github.com/dag/vim-fish

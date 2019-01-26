@@ -15,10 +15,13 @@ font-0 = Iosevka Nerd Font:pixelsize=11;2
 
 modules-left = i3 divIL mpd divL
 modules-center = weather
-modules-right = divR wired-network wireless-network divIR cpu divR memory divIR temperature divR volume divIR backlight divR battery divIR date divR powermenu
+modules-right = divR wired-network wireless-network divIR volume divR battery divIR date divR powermenu divIR
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
+
+tray-position = right
+tray-padding = 2
 
 [module/basecolor]
 primary = ${xrdb:*.background}
@@ -75,7 +78,7 @@ strip-wsnumbers = true
 index-sort = true
 enable-scroll = false
 
-label-separator = "" 
+label-separator = ""
 label-separator-background = ${self.primary}
 label-separator-foreground = ${self.secondary}
 
@@ -106,7 +109,6 @@ format-online-padding = 1
 format-offline = MPD is ded
 format-offline-background = ${self.primary}
 format-offline-padding = 1
-#<toggle>
 
 icon-prev = 
 icon-stop = 
@@ -129,57 +131,57 @@ label-song =  %artist% - %title%
 label-song-maxlen = 70
 label-song-ellipsis = true
 
-[module/cpu]
-type = internal/cpu
-inherit = module/basecolor
+#[module/cpu]
+#type = internal/cpu
+#inherit = module/basecolor
+#
+#interval = 1
+#
+#format = <label>
+#format-padding = 1
+#
+#label = " %percentage%%"
+#
+#
+#[module/memory]
+#type = internal/memory
+#inherit = module/basecolor2
+#
+#interval = 1
+#
+#format = <label>
+#format-padding = 1
+#
+#label =  %gb_used%
+##label =  %gb_used% (%percentage_used%%)
 
-interval = 1
 
-format = <label>
-format-padding = 1 
-
-label = " %percentage%%"
-
-
-[module/memory]
-type = internal/memory
-inherit = module/basecolor2
-
-interval = 1
-
-format = <label>
-format-padding = 1
-
-label =  %gb_used%
-#label =  %gb_used% (%percentage_used%%)
-
-
-[module/temperature]
-type = internal/temperature
-inherit = module/basecolor
-
-interval = 1
-
-thermal-zone = 1
-
-warn-temperature = 85
-
-format = <ramp> <label>
-format-padding = 1
-
-format-warn = <ramp> <label-warn>
-format-warn-padding = 1
-
-label = %temperature-c%
-
-label-warn = %temperature-c%
-label-warn-foreground = ${xrdb:*.color1}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
+#[module/temperature]
+#type = internal/temperature
+#inherit = module/basecolor
+#
+#interval = 1
+#
+#thermal-zone = 1
+#
+#warn-temperature = 85
+#
+#format = <ramp> <label>
+#format-padding = 1
+#
+#format-warn = <ramp> <label-warn>
+#format-warn-padding = 1
+#
+#label = %temperature-c%
+#
+#label-warn = %temperature-c%
+#label-warn-foreground = ${xrdb:*.color1}
+#
+#ramp-0 = 
+#ramp-1 = 
+#ramp-2 = 
+#ramp-3 = 
+#ramp-4 = 
 
 
 [module/date]
@@ -188,7 +190,7 @@ inherit = module/basecolor
 
 interval = 1
 
-date = %a %b %d, 
+date = %a %b %d,
 time = %H:%M:%S
 
 date-alt = %A, %d %B %Y
@@ -254,21 +256,21 @@ animation-charging-framerate = 500
 #
 #label =  %percentage%%
 
-[module/backlight]
-type = custom/script
-inherit = module/basecolor
-
-interval = 1
-exec = xbacklight -get
-format-padding = 1
-
-label =  %output%%
-
-click-left = xbacklight -inc 5
-click-right = xbacklight -dec 5
-
-scroll-up = xbacklight -inc 5
-scroll-down = xbacklight -dec 5
+#[module/backlight]
+#type = custom/script
+#inherit = module/basecolor
+#
+#interval = 1
+#exec = xbacklight -get
+#format-padding = 1
+#
+#label =  %output%%
+#
+#click-left = xbacklight -inc 5
+#click-right = xbacklight -dec 5
+#
+#scroll-up = xbacklight -inc 5
+#scroll-down = xbacklight -dec 5
 
 #[module/pavolume]
 #type = custom/script
@@ -286,9 +288,31 @@ scroll-down = xbacklight -dec 5
 #scroll-up = ~/scripts/pavolume.sh --up
 #scroll-down = ~/scripts/pavolume.sh --down
 
+#[module/bvolume]
+#type = internal/alsa
+#inherit = module/basecolor2
+#
+#format-volume = <ramp-volume> <label-volume>
+#format-volume-background = ${self.primary}
+#format-volume-padding = 1
+#
+#label-volume = %percentage%%
+#
+#ramp-volume-0 = 
+#ramp-volume-1 = 
+#
+#label-muted = 
+#format-muted-background = ${self.format-volume-background}
+#format-muted-padding = 1
+#
+#master-soundcard = bluealsa
+#
+#master-mixer = MID - A2DP
+
 [module/volume]
 type = internal/alsa
-inherit = module/basecolor2
+inherit = module/basecolor
+#inherit = module/basecolor2
 
 format-volume = <ramp-volume> <label-volume>
 format-volume-background = ${self.primary}
@@ -332,12 +356,12 @@ mapped = true
 type = custom/menu
 inherit = module/basecolor2
 
-label-open =   
+label-open = 
 label-open-background = ${self.primary}
 
 label-close = cancel
 
-label-separator = "" 
+label-separator = ""
 label-separator-background = ${self.primary}
 label-separator-foreground = ${self.secondary}
 
@@ -364,13 +388,13 @@ menu-0-2-background = ${self.menu-0-0-background}
 menu-0-2-foreground = ${self.menu-0-0-foreground}
 menu-0-2-padding = ${self.menu-0-0-padding}
 
-menu-1-0 = reboot?  
+menu-1-0 = reboot?
 menu-1-0-exec = sudo reboot
 menu-1-0-background = ${self.primary}
 menu-1-0-foreground = ${xrdb:*.color9}
 menu-1-0-padding = ${self.menu-0-0-padding}
 
-menu-2-0 = power off?  
+menu-2-0 = power off?
 menu-2-0-exec = sudo poweroff
 menu-2-0-background = ${self.menu-1-0-background}
 menu-2-0-foreground = ${self.menu-1-0-foreground}
