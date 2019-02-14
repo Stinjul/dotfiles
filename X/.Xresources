@@ -1,4 +1,4 @@
-#include ".Xresources.d/colors-main2"
+#include ".Xresources.d/colors-main"
 
 Urxvt.font:     xft:IosevkaNerdFontMono:pixelsize=14,\
         xft:DejavuSansMono:pixelsize=14,\

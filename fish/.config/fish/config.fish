@@ -5,8 +5,8 @@ set -x BROWSER "firefox"
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 set -x TEXINPUT .:/home/stan/Documents/School/templates/:$TEXINPUT
 
-set -g theme_display_user yes
-set -g theme_display_hostname yes
+set -g theme_display_user no
+set -g theme_display_hostname no
 set -g theme_color_scheme terminal-dark
 set -g theme_nerd_fonts yes
 

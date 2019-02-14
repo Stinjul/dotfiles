@@ -14,7 +14,7 @@ if [[ $- != *i* ]] ; then
     return
 fi
 
-export SUDO_ASKPASS="$HOME/scripts/rofipass.sh"
+export SUDO_ASKPASS="$HOME/scripts/rofi/rofipass.sh"
 
 # Put your fun stuff here.
 #source /etc/profile

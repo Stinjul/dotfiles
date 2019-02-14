@@ -13,9 +13,9 @@ fixed-center = true
 
 font-0 = Iosevka Nerd Font:pixelsize=11;2
 
-modules-left = i3 sepL mpd sepL
+modules-left = i3 divIL mpd divL
 modules-center = weather
-modules-right = sepR wired-network wireless-network sepR volume sepR battery sepR date sepR powermenu sepR
+modules-right = divR wired-network wireless-network divIR volume divR battery divIR date divR powermenu divIR
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -25,20 +25,49 @@ tray-padding = 2
 
 [module/basecolor]
 primary = ${xrdb:*.background}
-secondary = ${xrdb:*.color11}
+secondary = ${xrdb:*.color3}
 format-background = ${self.primary}
 
-[module/sepL]
-type = custom/text
-inherit = module/basecolor
-content-foreground = ${self.secondary}
-content = 
+[module/basecolor2]
+primary = ${xrdb:*.color3}
+secondary = ${xrdb:*.background}
+format-background = ${self.primary}
 
-[module/sepR]
+[module/divR]
 type = custom/text
 inherit = module/basecolor
+content = ""
+
+content-background = ${self.primary}
 content-foreground = ${self.secondary}
-content = 
+
+[module/divL]
+type = custom/text
+## Until there is nested inheritance I wont be able to just inherit divR
+#inherit = module/divR
+inherit = module/basecolor
+content = ""
+
+content-background = ${self.primary}
+content-foreground = ${self.secondary}
+
+[module/divIR]
+type = custom/text
+inherit = module/basecolor2
+content = ""
+
+content-background = ${self.primary}
+content-foreground = ${self.secondary}
+
+[module/divIL]
+type = custom/text
+## Same deal as with divL
+#inherit = module/divIR
+inherit = module/basecolor2
+content = ""
+
+content-background = ${self.primary}
+content-foreground = ${self.secondary}
 
 [module/i3]
 type = internal/i3
@@ -73,34 +102,19 @@ label-urgent-padding = 1
 
 [module/mpd]
 type = internal/mpd
-inherit = module/basecolor
-
-# Hardcoded colors because of formatting tag limits
-
-format-online = <label-song> <label-time> %{F#d5911a}%{F-} <icon-prev> <icon-seekb> <toggle> <icon-stop> <icon-seekf> <icon-next> %{F#d5911a}%{F-} <icon-random> <icon-repeat> <icon-single> %{F#d5911a}%{F-} <bar-progress>
+inherit = module/basecolor2
+format-online = <label-song> <label-time> <icon-prev> <toggle> <icon-stop> <icon-next>
 format-online-background = ${self.primary}
 format-online-padding = 1
-
-format-stopped = <icon-prev> <icon-seekb> <toggle> <icon-stop> <icon-seekf> <icon-next> %{F#d5911a}%{F-} <icon-random> <icon-repeat> <icon-single>
-
 format-offline = MPD is ded
 format-offline-background = ${self.primary}
 format-offline-padding = 1
 
 icon-prev = 
-icon-seekb =
 icon-stop = 
 icon-play = 
 icon-pause = 
-icon-seekf =
 icon-next = 
-
-icon-random =咽
-icon-repeat =凌
-icon-single =綾
-toggle-on-foreground = ${self.secondary}
-toggle-off-foreground = ${xrdb:*.color8}
-
 #icon-prev = <-
 #icon-stop = X
 #icon-play-prefix = #f00
@@ -108,10 +122,10 @@ toggle-off-foreground = ${xrdb:*.color8}
 #icon-pause =
 #icon-next = ->
 
-bar-progress-width = 10
-bar-progress-indicator = 
-bar-progress-fill = ─
-bar-progress-empty = ─
+#bar-progress-width = 45
+#bar-progress-indicator = |
+#bar-progress-fill = -
+#bar-progress-empty = -
 
 label-song =  %artist% - %title%
 label-song-maxlen = 70
@@ -131,7 +145,7 @@ label-song-ellipsis = true
 #
 #[module/memory]
 #type = internal/memory
-#inherit = module/basecolor
+#inherit = module/basecolor2
 #
 #interval = 1
 #
@@ -190,7 +204,7 @@ label =  %date% %time%
 
 [module/battery]
 type = internal/battery
-inherit = module/basecolor
+inherit = module/basecolor2
 
 full-at = 96
 
@@ -276,7 +290,7 @@ animation-charging-framerate = 500
 
 #[module/bvolume]
 #type = internal/alsa
-#inherit = module/basecolor
+#inherit = module/basecolor2
 #
 #format-volume = <ramp-volume> <label-volume>
 #format-volume-background = ${self.primary}
@@ -298,7 +312,7 @@ animation-charging-framerate = 500
 [module/volume]
 type = internal/alsa
 inherit = module/basecolor
-#inherit = module/basecolor
+#inherit = module/basecolor2
 
 format-volume = <ramp-volume> <label-volume>
 format-volume-background = ${self.primary}
@@ -340,7 +354,7 @@ mapped = true
 
 [module/powermenu]
 type = custom/menu
-inherit = module/basecolor
+inherit = module/basecolor2
 
 label-open = 
 label-open-background = ${self.primary}
@@ -399,16 +413,13 @@ exec = ~/scripts/openweathermap-detailed.sh
 
 [module/wired-network]
 type = internal/network
-inherit = module/basecolor
+inherit = module/basecolor2
 
 interface = enp4s0
 
 format-connected = " "
-#format-connected = "<label-connected>"
 format-connected-foreground = ${xrdb:*.color10}
 format-connected-background = ${self.primary}
-
-#label-connected = "  %local_ip% "
 
 format-disconnected = " "
 format-disconnected-foreground = ${xrdb:*.color1}
@@ -417,7 +428,7 @@ format-disconnected-background = ${self.format-connected-background}
 
 [module/wireless-network]
 type = internal/network
-inherit = module/basecolor
+inherit = module/basecolor2
 
 interface = wlp5s0
 
