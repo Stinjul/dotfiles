@@ -1,7 +1,12 @@
 execute pathogen#infect()
 execute pathogen#helptags()
 
-set shell=/bin/bash
+if has('win32')
+    "set shell=powershell.exe
+    "set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
+else
+    set shell=/bin/bash
+endif
 set nocompatible
 set backspace=indent,eol,start
 set autoindent
@@ -38,7 +43,11 @@ set wildmenu
 if exists("$VIRTUAL_ENV")
     let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
 else
-    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+    if has('win32')
+        let g:python3_host_prog=substitute(system("where python"), "\n", '', 'g')
+    else
+        let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+    endif
 endif
 
 
