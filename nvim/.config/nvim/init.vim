@@ -1,1 +1,1 @@
-/home/stan/.vimrc
+../../../vim/.vimrc
