@@ -10,6 +10,7 @@ endif
 set nocompatible
 set backspace=indent,eol,start
 set autoindent
+set smartindent
 set history=50
 set ruler
 set showcmd
@@ -50,6 +51,8 @@ else
     endif
 endif
 
+" Fix python reindent
+autocmd FileType python setlocal equalprg=
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -65,25 +68,36 @@ augroup END
 " LC-neovim
 let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'javascript': ['/usr/bin/javascript-typescript-stdio', '--trace', '--logfile', '/tmp/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['/usr/bin/javascript-typescript-stdio'],
     \ 'python': ['pyls'],
-    \ 'c': ['clangd']
+    \ 'c': ['clangd'],
+    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
+    \ 'rmd': ['R', '--slave', '-e', 'languageserver::run()']
     \ }
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_loadSettings = 1
 let g:LanguageClient_diagnosticsDisplay = {
-  \1: {'name': 'Error', 'texthl': 'Normal', 'signText': '✖', 'signTexthl': 'Error',},
-  \2: {'name': 'Warning', 'texthl': 'Normal', 'signText': '⚠', 'signTexthl': 'Todo',},
-  \3: {'name': 'Information', 'texthl': 'Normal', 'signText': 'ℹ', 'signTexthl': 'Todo',},
-  \4: {'name': 'Hint', 'texthl': 'Normal', 'signText': 'ℹ', 'signTexthl': 'Todo',},
+  \1: {'name': 'Error', 'texthl': 'Normal', 'signText': '✖', 'signTexthl': 'Error', 'virtualTexthl' : 'Error'},
+  \2: {'name': 'Warning', 'texthl': 'Normal', 'signText': '⚠', 'signTexthl': 'Todo', 'virtualTexthl' : 'Todo'},
+  \3: {'name': 'Information', 'texthl': 'Normal', 'signText': 'ℹ', 'signTexthl': 'Todo', 'virtualTexthl' : 'Todo'},
+  \4: {'name': 'Hint', 'texthl': 'Normal', 'signText': 'ℹ', 'signTexthl': 'Todo', 'virtualTexthl' : 'Todo'},
   \}
+" let g:LanguageClient_windowLogMessageLevel="Log"
+" let g:LanguageClient_loggingLevel="DEBUG"
+" let g:LanguageClient_loggingFile=expand("~/LanguageClient.log")
 
 " grammarous
-let g:grammarous#show_first_error=1
+"let g:grammarous#show_first_error=1
 map <F7> :GrammarousCheck --lang=
 "let g:grammarous#disabled_categories = {'*' : ['TYPOS']}
 let g:grammarous#disabled_rules = {'*' : ['MORFOLOGIK_RULE_NL_NL']}
 "let g:grammarous#enable_spell_check=0
+
+
+" argwrap
+nnoremap <silent> <leader>a :ArgWrap<CR>
+
 
 
 " Colorizer
@@ -128,6 +142,8 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='myterm'
 let g:airline_symbols.branch = ''
 let g:airline_symbols.notexists = ''
+let g:airline#extensions#wordcount#filetypes =
+\ ['asciidoc', 'help', 'mail', 'markdown', 'org', 'rst', 'tex', 'text', 'rmd']
 set noshowmode
 
 

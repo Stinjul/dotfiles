@@ -31,3 +31,4 @@ alias musicPlayer 'ncmpcpp -s visualizer -S playlist'
 alias adiscord 'apulse discord'
 
 #alias pipUpdate 'pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
+alias Rrebuild 'sudo emerge --oneshot --ask (equery list "sci-CRAN/*" --installed --format="\$cp")'

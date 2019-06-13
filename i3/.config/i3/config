@@ -168,7 +168,8 @@ bindsym XF86AudioPause exec "mpc pause"
 bindsym XF86AudioNext exec "mpc next"
 bindsym XF86AudioPrev exec "mpc prev"
 
-bindsym --release $mod+Shift+s exec "scrot -s"
+bindsym --release $mod+Mod1+s exec "scrot -s"
+bindsym --release $mod+Shift+s exec "scrot -d 3 -u"
 
 # resize window (you can also use the mouse for that)
 #mode "resize" {
@@ -281,7 +282,7 @@ client.background   $black
 bindsym $mod+Shift+x exec ~/scripts/i3lock.sh
 #bindsym $mod+Shift+x exec xscreensaver-command -lock
 
-bindsym $mod+Shift+m exec ~/scripts/monitor_layout.sh
+bindsym $mod+Shift+m exec ~/scripts/rofi/monitor_layout.sh
 
 #exec --no-startup-id xscreensaver -no-splash
 exec --no-startup-id mpd
@@ -298,6 +299,9 @@ exec --no-startup-id calcurse --daemon
 
 #exec --no-startup-id i3-msg 'workspace $w1; exec kitty --name main_term; workspace $w10; exec kitty weechat; workspace $w1'
 exec --no-startup-id i3-msg 'workspace $w1; exec kitty --name main_term;'
+
+### Miniplayer ###
+for_window [title="miniplayer"] sticky enable
 
 ### Window stuff ###
 for_window [class="^.*"] border pixel 3

@@ -249,7 +249,7 @@
     history = ctrl+twosuperior
 
     # Context menu.
-    context = ctrl+threesuperior
+    context = ctrl+shift+twosuperior
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
