@@ -1,0 +1,6 @@
+{
+    "eslint.packageManager": "npm",
+    "eslint.nodePath": "/usr/lib64/node_modules",
+    "r.trace.server": "verbose",
+    "r.lsp.debug": true
+}

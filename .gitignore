@@ -13,3 +13,5 @@ __init__.py
 ranger/.config/ranger/bookmarks
 ranger/.config/ranger/history
 ranger/.config/ranger/tagged
+
+vim/.vim/sessions/

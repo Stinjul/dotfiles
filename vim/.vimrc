@@ -1,13 +1,70 @@
-execute pathogen#infect()
-execute pathogen#helptags()
+" Dein stuff
+if &compatible
+    set nocompatible
+endif
 
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('~/.cache/dein')
+    call dein#begin('~/.cache/dein')
+    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+    " Filtypes
+    "" Gentoo files
+    call dein#add('gentoo/gentoo-syntax')
+    "" R
+    call dein#add('jalvesaq/Nvim-R')
+    "" Fish
+    call dein#add('dag/vim-fish')
+    "" Pandoc markdown and RMarkdown
+    call dein#add('vim-pandoc/vim-pandoc')
+    call dein#add('vim-pandoc/vim-pandoc-syntax')
+    call dein#add('vim-pandoc/vim-rmarkdown')
+    "" Powershell
+    call dein#add('PProvost/vim-ps1')
+
+    " Git stuff
+    call dein#add('tpope/vim-fugitive')
+    call dein#add('airblade/vim-gitgutter')
+
+    " Statusline
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
+
+    " Languageserver and autocompletion
+    call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
+    "" LSP symbol and tag viewer
+    call dein#add('liuchengxu/vista.vim', {'on_cmd': ['Vista', 'Vista!', 'Vista!!']})
+
+    " Misc
+    "" Argumant wrapping
+    call dein#add('FooSoft/vim-argwrap')
+    "" Grammar checker
+    call dein#add('rhysd/vim-grammarous')
+    "" Surrounding tags manipulation
+    call dein#add('machakann/vim-sandwich')
+    "" (R)markdown table manipulation
+    call dein#add('dhruvasagar/vim-table-mode', {"on_ft" : ['md', 'markdown', 'rmarkdown']})
+    "" Discord status
+    call dein#add('anned20/vimsence')
+
+
+    call dein#end()
+    call dein#save_state()
+endif
+
+if dein#check_install()
+    call dein#install()
+endif
+
+" (Neo)vim settings
 if has('win32')
     "set shell=powershell.exe
     "set shellcmdflag=-NoProfile\ -NoLogo\ -NonInteractive\ -Command
 else
     set shell=/bin/bash
 endif
-set nocompatible
 set backspace=indent,eol,start
 set autoindent
 set smartindent
@@ -20,8 +77,8 @@ set more
 set scrolloff=3
 set vb t_vb=
 set backup
-syntax on
-
+filetype plugin indent on
+syntax enable
 
 "Show certain chars
 set listchars=nbsp:␣,tab:>␣,trail:~
@@ -33,11 +90,32 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-
 " Autocomplete
 set wildmode=longest,list,full
 set wildmenu
 
+" Colors
+colorscheme peachpuff
+hi VertSplit ctermfg=3
+set fillchars+=vert:┃
+hi StatusLine ctermfg=233
+hi StatusLineNC ctermfg=233
+hi SpellBad ctermbg=9
+hi SpellCap ctermbg=12
+hi SpellLocal ctermbg=14
+hi SpellRare ctermbg=13
+
+" Enable relativenumber only on focused window
+set number relativenumber
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave    * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter      * set norelativenumber
+augroup END
+
+
+" Toggle spellcheck
+map <F6> :setlocal spell! spelllang=en_gb,nl<CR>
 
 " Figure out the system Python for Neovim.
 " From https://github.com/neovim/neovim/issues/1887#issuecomment-280653872
@@ -54,38 +132,23 @@ endif
 " Fix python reindent
 autocmd FileType python setlocal equalprg=
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-" Tab scroll
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" Close preview after insertion
-augroup DeopleteTab
-    autocmd!
-    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-augroup END
+" CoC
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-python', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-ccls']
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
 
-" LC-neovim
-let g:LanguageClient_serverCommands = {
-    \ 'sh': ['bash-language-server', 'start'],
-    \ 'javascript': ['/usr/bin/javascript-typescript-stdio', '--trace', '--logfile', '/tmp/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['/usr/bin/javascript-typescript-stdio'],
-    \ 'python': ['pyls'],
-    \ 'c': ['clangd'],
-    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
-    \ 'rmd': ['R', '--slave', '-e', 'languageserver::run()']
-    \ }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_loadSettings = 1
-let g:LanguageClient_diagnosticsDisplay = {
-  \1: {'name': 'Error', 'texthl': 'Normal', 'signText': '✖', 'signTexthl': 'Error', 'virtualTexthl' : 'Error'},
-  \2: {'name': 'Warning', 'texthl': 'Normal', 'signText': '⚠', 'signTexthl': 'Todo', 'virtualTexthl' : 'Todo'},
-  \3: {'name': 'Information', 'texthl': 'Normal', 'signText': 'ℹ', 'signTexthl': 'Todo', 'virtualTexthl' : 'Todo'},
-  \4: {'name': 'Hint', 'texthl': 'Normal', 'signText': 'ℹ', 'signTexthl': 'Todo', 'virtualTexthl' : 'Todo'},
-  \}
-" let g:LanguageClient_windowLogMessageLevel="Log"
-" let g:LanguageClient_loggingLevel="DEBUG"
-" let g:LanguageClient_loggingFile=expand("~/LanguageClient.log")
+" Vista
+let g:vista_default_executive = 'ctags'
+let g:vista_fzf_preview = ['right:50%']
+
+let g:vista_executive_for = {
+  \ 'javascript': 'ctags',
+  \ 'javascript.jsx': 'coc',
+  \ 'python': 'coc',
+  \ }
+
 
 " grammarous
 "let g:grammarous#show_first_error=1
@@ -99,39 +162,8 @@ let g:grammarous#disabled_rules = {'*' : ['MORFOLOGIK_RULE_NL_NL']}
 nnoremap <silent> <leader>a :ArgWrap<CR>
 
 
-
-" Colorizer
-let g:colorizer_auto_filetype='css,html'
-
-
-" Enable relativenumber only on focused window
-set number relativenumber
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave    * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter      * set norelativenumber
-augroup END
-
-
-" Toggle spellcheck
-map <F6> :setlocal spell! spelllang=en_gb,nl<CR>
-
-
-" No newline comment
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-
 " disable pandoc auto-spellcheck (why)
 let g:pandoc#modules#disabled = ["spell"]
-
-
-" refresh mupdf
-"command RefreshMuPDF silent !xdotool key --window $(xdotool search --pid $(ps -C mupdf -o pid=)) r
-command RefreshMuPDF silent !xdotool key --window $(xdotool search --name %:t:r.pdf ) r
-
-
-" SudoWrite
-command -nargs=0 Sw w !sudo tee % > /dev/null
 
 
 " Airline
@@ -143,70 +175,30 @@ let g:airline_theme='myterm'
 let g:airline_symbols.branch = ''
 let g:airline_symbols.notexists = ''
 let g:airline#extensions#wordcount#filetypes =
-\ ['asciidoc', 'help', 'mail', 'markdown', 'org', 'rst', 'tex', 'text', 'rmd']
+            \ ['asciidoc', 'help', 'mail', 'markdown', 'org', 'rst', 'tex', 'text', 'rmd']
 set noshowmode
 
-
-" Colors
-colorscheme peachpuff
-hi VertSplit ctermfg=3
-set fillchars+=vert:┃
-hi StatusLine ctermfg=233
-hi StatusLineNC ctermfg=233
-hi SpellBad ctermbg=9
-hi SpellCap ctermbg=12
-hi SpellLocal ctermbg=14
-hi SpellRare ctermbg=13
 
 " Table Mode
 let g:table_mode_corner_corner='+'
 let g:table_mode_header_fillchar='='
 
 
-" Luke smith .vimrc stuff
-" https://github.com/LukeSmithxyz/voidrice/blob/master/.vimrc
-
-" Navigating with guides
-    inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-    vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-    map <Space><Tab> <Esc>/<++><Enter>"_c4l
-inoremap ;gui <++>
-
-""".bib
-augroup BibCmds
-    autocmd!
-    autocmd FileType bib inoremap ;a @article{<Enter>author<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>journal<Space>=<Space>"<++>",<Enter>volume<Space>=<Space>"<++>",<Enter>pages<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>8kA,<Esc>i
-    autocmd FileType bib inoremap ;b @book{<Enter>author<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>publisher<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>6kA,<Esc>i
-    autocmd FileType bib inoremap ;c @incollection{<Enter>author<Space>=<Space>"<++>",<Enter>title<Space>=<Space>"<++>",<Enter>booktitle<Space>=<Space>"<++>",<Enter>editor<Space>=<Space>"<++>",<Enter>year<Space>=<Space>"<++>",<Enter>publisher<Space>=<Space>"<++>",<Enter>}<Enter><++><Esc>8kA,<Esc>i
-augroup END
-
+" refresh mupdf
+"command RefreshMuPDF silent !xdotool key --window $(xdotool search --pid $(ps -C mupdf -o pid=)) r
+command RefreshMuPDF silent !xdotool key --window $(xdotool search --name %:t:r.pdf ) r
 
 """LATEX
 augroup LatexCmds
     autocmd!
-    " Word count:
-    autocmd FileType tex map <F3> :w !detex \| wc -w<CR>
-    autocmd FileType tex inoremap <F3> <Esc>:w !detex \| wc -w<CR>
     " Compile document using luatex:
     autocmd FileType tex inoremap <F5> <Esc>:w<Enter>:!lualatex<space><c-r>%<Enter>:RefreshMuPDF<Enter>:startinsert<Enter>
     autocmd FileType tex nnoremap <F5> :w<Enter>:!lualatex<space><c-r>%<Enter>:RefreshMuPDF<Enter>
 augroup END
 
-
 "MARKDOWN
 augroup MarkdownCmds
     autocmd!
-    autocmd Filetype markdown,rmd inoremap ;n ---<Enter><Enter>
-    autocmd Filetype markdown,rmd inoremap ;b ****<++><Esc>F*hi
-    autocmd Filetype markdown,rmd inoremap ;s ~~~~<++><Esc>F~hi
-    autocmd Filetype markdown,rmd inoremap ;e **<++><Esc>F*i
-    autocmd Filetype markdown,rmd inoremap ;h ====<Space><++><Esc>F=hi
-    autocmd Filetype markdown,rmd inoremap ;i ![](<++>)<++><Esc>F[a
-    autocmd Filetype markdown,rmd inoremap ;a [](<++>)<++><Esc>F[a
-    autocmd Filetype markdown,rmd inoremap ;1 #<Space><Enter><++><Esc>kA
-    autocmd Filetype markdown,rmd inoremap ;2 ##<Space><Enter><++><Esc>kA
-    autocmd Filetype markdown,rmd inoremap ;3 ###<Space><Enter><++><Esc>kA
-    autocmd Filetype markdown,rmd inoremap ;l --------<Enter>
     autocmd Filetype markdown map <F5> :!pandoc<space><C-r>%<space>-o<space><C-r>%.pdf<Enter><Enter>
     "autocmd Filetype rmd map <F5> :w<Enter>:!echo<space>"require(rmarkdown);<space>render('<c-r>%',intermediates_dir<space>=<space>'~/Documents/School/templates/')"<space>\|<space>R<space>--vanilla<enter>:RefreshMuPDF<Enter>
     "autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
