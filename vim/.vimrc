@@ -33,9 +33,13 @@ if dein#load_state('~/.cache/dein')
     call dein#add('vim-airline/vim-airline-themes')
 
     " Languageserver and autocompletion
-    call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
+    call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
     "" LSP symbol and tag viewer
     call dein#add('liuchengxu/vista.vim', {'on_cmd': ['Vista', 'Vista!', 'Vista!!']})
+    "" C# langserver
+    call dein#add('OmniSharp/omnisharp-vim')
+    "" C# extended support
+    call dein#add('OrangeT/vim-csharp')
 
     " Misc
     "" Argumant wrapping
@@ -137,6 +141,12 @@ let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prett
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+
+" OmniSharp
+let g:OmniSharp_server_stdio = 1
+"let g:OmniSharp_proc_debug = 1
+"let g:OmniSharp_loglevel = 'debug'
 
 
 " Vista
