@@ -15,3 +15,5 @@ ranger/.config/ranger/history
 ranger/.config/ranger/tagged
 
 vim/.vim/sessions/
+
+qutebrowser/.config/qutebrowser/qsettings/
