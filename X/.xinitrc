@@ -9,5 +9,6 @@ xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 
 xrdb -merge ~/.Xresources
+sxhkd &
 numlockx &
 exec i3
