@@ -23,6 +23,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('vim-pandoc/vim-rmarkdown')
     "" Powershell
     call dein#add('PProvost/vim-ps1')
+    "" sxhkd
+    call dein#add('kovetskiy/sxhkd-vim')
 
     " Git stuff
     call dein#add('tpope/vim-fugitive')
@@ -37,11 +39,14 @@ if dein#load_state('~/.cache/dein')
     "" LSP symbol and tag viewer
     call dein#add('liuchengxu/vista.vim', {'on_cmd': ['Vista', 'Vista!', 'Vista!!']})
     "" C# langserver
-    call dein#add('OmniSharp/omnisharp-vim')
+    "" replaced by coc-omnisharp
+    " call dein#add('OmniSharp/omnisharp-vim')
     "" C# extended support
     call dein#add('OrangeT/vim-csharp')
 
     " Misc
+    "" Denite (like fzf, ctrlp, unite, ...)
+    
     "" Argumant wrapping
     call dein#add('FooSoft/vim-argwrap')
     "" Grammar checker
@@ -49,9 +54,9 @@ if dein#load_state('~/.cache/dein')
     "" Surrounding tags manipulation
     call dein#add('machakann/vim-sandwich')
     "" (R)markdown table manipulation
-    call dein#add('dhruvasagar/vim-table-mode', {"on_ft" : ['md', 'markdown', 'rmarkdown']})
+    call dein#add('dhruvasagar/vim-table-mode', {"on_ft" : ['md', 'rmd', 'markdown', 'rmarkdown']})
     "" Discord status
-    call dein#add('anned20/vimsence')
+    call dein#add('ananagame/vimsence')
 
 
     call dein#end()
@@ -137,7 +142,7 @@ endif
 autocmd FileType python setlocal equalprg=
 
 " CoC
-let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-python', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-ccls']
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-python', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-ccls', 'coc-omnisharp']
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
@@ -186,6 +191,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.notexists = ''
 let g:airline#extensions#wordcount#filetypes =
             \ ['asciidoc', 'help', 'mail', 'markdown', 'org', 'rst', 'tex', 'text', 'rmd']
+let g:airline#extenions#coc#enabled = 1
 set noshowmode
 
 
