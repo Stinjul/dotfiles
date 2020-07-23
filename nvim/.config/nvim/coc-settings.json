@@ -1,6 +1,11 @@
 {
     "eslint.packageManager": "npm",
     "eslint.nodePath": "~/.npm-packages/lib64/node_modules/",
+    "suggest.noselect": false,
+    "yaml.schemas": {
+        "http://json.schemastore.org/Ansible-stable-2.7": "/*playbook*/*.yml"
+    },
+    "yaml.format.enable": true,
     "r.trace.server": "verbose",
     "r.lsp.debug": true,
     "cs.trace.server": "verbose",

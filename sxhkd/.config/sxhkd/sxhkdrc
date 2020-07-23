@@ -2,7 +2,10 @@ super + Return
 	kitty
 
 super + d
-	rofi -show run
+	rofi -show run -theme ~/.cache/wal/colors-rofi-dark.rasi
+
+super + Tab
+	rofi -show window -theme ~/.cache/wal/colors-rofi-dark.rasi
 
 {super + KP_Add,KP86AudioRaiseVolume}
 	mpc volume +2
@@ -11,13 +14,13 @@ super + d
 	mpc volume -2
 
 super + KP_Multiply
-	mpc toggle
+	~/scripts/rofi/mpc.sh
 
 {XF86AudioPlay,XF86AudioPause,XF86AudioStop,XF86AudioNext,XF86AudioPrev}
 	mpc {play,pause,stop,next,prev}
 
-super + {alt,shift} + s
-	scrot {-s,-d 3 -u}
+super + {alt, shift} + s
+	sleep 1; scrot {-s, -u}
 
 super + shift + x
 	~/scripts/i3lock.sh

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# EGO_SUM needs something else
+# awk '{print "\"" $1 " " $2 "\""}' go.sum | nvim
+
 go list -m all | sed '1d' | while read -r line ; do
     # out=$(echo $line | sed 's/v0\.0\.0-[0-9]\{14\}-//g; s/\+incompatible//')
     

@@ -5,6 +5,7 @@ set -x BROWSER "firefox"
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 set -x TEXINPUT .:/home/stan/Documents/School/templates/:$TEXINPUT
 set -x DOTNET_ROOT "/opt/dotnet_core"
+set -x SPARK_LOCAL_IP "127.0.0.1"
 
 set -g theme_display_user no
 set -g theme_display_hostname no

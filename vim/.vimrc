@@ -14,17 +14,25 @@ if dein#load_state('~/.cache/dein')
     "" Gentoo files
     call dein#add('gentoo/gentoo-syntax')
     "" R
-    call dein#add('jalvesaq/Nvim-R')
+    "" replaced by polyglot
+    " call dein#add('jalvesaq/Nvim-R')
     "" Fish
-    call dein#add('dag/vim-fish')
+    "" replaced by polyglot
+    " call dein#add('dag/vim-fish')
     "" Pandoc markdown and RMarkdown
     call dein#add('vim-pandoc/vim-pandoc')
     call dein#add('vim-pandoc/vim-pandoc-syntax')
     call dein#add('vim-pandoc/vim-rmarkdown')
     "" Powershell
-    call dein#add('PProvost/vim-ps1')
-    "" sxhkd
+    "" replaced by polyglot
+    " call dein#add('PProvost/vim-ps1')
+    "" Sxhkd
     call dein#add('kovetskiy/sxhkd-vim')
+    "" Ansible YML
+    "call dein#add('pearofducks/ansible-vim')
+    "" C# extended support
+    "" replaced by polyglot
+    "call dein#add('OrangeT/vim-csharp')
 
     " Git stuff
     call dein#add('tpope/vim-fugitive')
@@ -37,12 +45,15 @@ if dein#load_state('~/.cache/dein')
     " Languageserver and autocompletion
     call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
     "" LSP symbol and tag viewer
-    call dein#add('liuchengxu/vista.vim', {'on_cmd': ['Vista', 'Vista!', 'Vista!!']})
+    call dein#add('liuchengxu/vista.vim')
     "" C# langserver
     "" replaced by coc-omnisharp
     " call dein#add('OmniSharp/omnisharp-vim')
-    "" C# extended support
-    call dein#add('OrangeT/vim-csharp')
+    "" Multilanguage support
+    call dein#add('sheerun/vim-polyglot')
+
+    " Snippets
+    call dein#add('honza/vim-snippets')
 
     " Misc
     "" Denite (like fzf, ctrlp, unite, ...)
@@ -57,7 +68,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('dhruvasagar/vim-table-mode', {"on_ft" : ['md', 'rmd', 'markdown', 'rmarkdown']})
     "" Discord status
     call dein#add('ananagame/vimsence')
-
+    "" Read local editor config files
+    call dein#add('editorconfig/editorconfig-vim')
 
     call dein#end()
     call dein#save_state()
@@ -86,6 +98,7 @@ set more
 set scrolloff=3
 set vb t_vb=
 set backup
+set updatetime=300
 filetype plugin indent on
 syntax enable
 
@@ -102,6 +115,9 @@ set softtabstop=4
 " Autocomplete
 set wildmode=longest,list,full
 set wildmenu
+
+" Leader
+let mapleader=","
 
 " Colors
 colorscheme peachpuff
@@ -142,10 +158,27 @@ endif
 autocmd FileType python setlocal equalprg=
 
 " CoC
-let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-python', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-ccls', 'coc-omnisharp']
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-python', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-ccls', 'coc-omnisharp', 'coc-yaml', 'coc-java', 'coc-metals']
+
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+
+nmap <leader>qf <Plug>(coc-fix-current)
 
 
 " OmniSharp
@@ -199,6 +232,8 @@ set noshowmode
 let g:table_mode_corner_corner='+'
 let g:table_mode_header_fillchar='='
 
+" Editorconfig
+let g:Editorconfig_exclude_patterns = ['fugitive://.*']
 
 " refresh mupdf
 "command RefreshMuPDF silent !xdotool key --window $(xdotool search --pid $(ps -C mupdf -o pid=)) r

@@ -50,11 +50,11 @@ configuration {
 /*  window-format: "{w}    {i}{c}   {t}";*/
 /*  click-to-exit: true;*/
 /*  show-match: true;*/
-/*  theme: ;*/
-    color-normal: "#1b1918, #f1efee, #a87214, #f22c40, #f1efee";
-    color-urgent: "#1b1918, #f22c40, #a87214, #f22c40, #f1efee";
-    color-active: "#1b1918, #dd0e23, #a87214, #dd0e23, #f1efee";
-    color-window: "#1b1918, #a87214, #a87214";
+/*    theme:"main" ;*/
+/*    color-normal: "#1b1918, #f1efee, #a87214, #f22c40, #f1efee"; */
+/*    color-urgent: "#1b1918, #f22c40, #a87214, #f22c40, #f1efee"; */
+/*    color-active: "#1b1918, #dd0e23, #a87214, #dd0e23, #f1efee"; */
+/*    color-window: "#1b1918, #a87214, #a87214"; */
 /*  max-history-size: 25;*/
 /*  combi-hide-mode-prefix: false;*/
 /*  pid: "/var/run/user/1000/rofi.pid";*/

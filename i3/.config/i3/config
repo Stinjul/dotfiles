@@ -138,7 +138,7 @@ bindsym $mod+8 workspace $w8
 bindsym $mod+9 workspace $w9
 bindsym $mod+0 workspace $w10
 #bindsym $mod+Tab workspace back_and_forth
-bindsym $mod+Tab exec rofi -show window
+#bindsym $mod+Tab exec rofi -show window
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $w1
@@ -233,13 +233,14 @@ client.background        $black
 
 # Start services and run commands
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
-exec_always --no-startup-id "$HOME/.config/picom.sh"
+#exec_always --no-startup-id "$HOME/.config/picom.sh"
 
-exec --no-startup-id "mpd && mpDris2"
+exec --no-startup-id "~/scripts/dein-update.sh"
+exec --no-startup-id "mpd; mpDris2"
 exec --no-startup-id "blueman-applet"
 exec --no-startup-id "dunst"
 exec --no-startup-id "feh --bg-fill ~/Pictures/Wallpapers/gurren-lagann-wallpaper.jpg"
-exec --no-startup-id "/usr/lib/libexec/kdeconnectd && kdeconnect-indicator"
+exec --no-startup-id "kdeconnect-indicator"
 exec --no-startup-id "calcurse-caldav --init=keep-remote; calcure --daemon"
 
 # Launch terminal on first workspace
