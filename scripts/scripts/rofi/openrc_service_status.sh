@@ -5,7 +5,7 @@ escapeAction="break"
 
 function rofi_command {
     # Width includes the scrollbar char(?), so +1
-    rofi -dmenu -markup-rows -width -$(($rofiCharWidth+1)) "$@"
+    rofi -theme ~/.cache/wal/colors-rofi-dark.rasi -dmenu -markup-rows -width -$(($rofiCharWidth+1)) "$@"
 }
 
 function sudo_command {

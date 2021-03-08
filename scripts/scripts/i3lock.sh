@@ -16,7 +16,8 @@ iconcentery=${iconcentery//\"}
 
 mkdir -p /tmp/lock
 
-scrot "$tmpbg"
+# scrot "$tmpbg"
+maim > "$tmpbg"
 convert "$tmpbg" -scale 10% -scale 1000% "$tmpbg"
 #convert "$tmpbg" "$icon" -gravity center -composite -matte "$tmpbg"
 #convert "$tmpbg" -scale 10% -scale 1000% \( "$icon" -scale $((100/$scale))% -gravity center \) -composite -matte "$tmpbg"

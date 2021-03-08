@@ -8,6 +8,8 @@ fi
 if [[ -f ~/.laptop ]]; then
     xrandr --setprovideroutputsource modesetting NVIDIA-0
     xrandr --auto
+else
+    xrandr --output DVI-D-1 --right-of DVI-D-0
 fi
 
 xrdb -merge ~/.Xresources

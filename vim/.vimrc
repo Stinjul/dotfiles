@@ -138,6 +138,9 @@ augroup numbertoggle
     autocmd BufLeave,FocusLost,InsertEnter      * set norelativenumber
 augroup END
 
+" Bind esc to escape term mode
+tnoremap <Esc> <C-\><C-n>
+
 
 " Toggle spellcheck
 map <F6> :setlocal spell! spelllang=en_gb,nl<CR>
@@ -157,8 +160,14 @@ endif
 " Fix python reindent
 autocmd FileType python setlocal equalprg=
 
+
+" Polyglot
+" Fix autindent aligning with brackets
+autocmd FileType r let r_indent_align_args = 0
+
+
 " CoC
-let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-python', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-ccls', 'coc-omnisharp', 'coc-yaml', 'coc-java', 'coc-metals']
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-pyright', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-omnisharp', 'coc-yaml', 'coc-java', 'coc-metals', 'coc-groovy', 'coc-fsharp']
 
 " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -177,8 +186,8 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
-
 nmap <leader>qf <Plug>(coc-fix-current)
+nmap <leader>cf <Plug>(coc-format)
 
 
 " OmniSharp

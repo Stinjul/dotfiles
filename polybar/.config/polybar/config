@@ -1,6 +1,6 @@
 ; vim:ft=dosini
 
-[bar/example]
+[bar/main]
 width = 100%
 height = 18
 
@@ -15,12 +15,12 @@ font-0 = Iosevka Nerd Font:pixelsize=11;2
 
 modules-left = i3 sepL mpd sepL
 modules-center = weather
-modules-right = sepR wired-network wireless-network sepR volume sepR battery sepR date sepR powermenu sepR
+modules-right = sepR wired-network wireless-network sepR pavolume sepR battery sepR date sepR powermenu sepR
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-tray-position = right
+tray-position = ${env:TRAY_POSITION:right}
 tray-padding = 2
 
 [module/basecolor]
@@ -258,21 +258,23 @@ animation-charging-framerate = 500
 #scroll-up = xbacklight -inc 5
 #scroll-down = xbacklight -dec 5
 
-#[module/pavolume]
-#type = custom/script
-#interval = 1
-#label = %output%
-#
-#format-padding = 1
-#format-background = ${xrdb:*.color3}
-#
-#exec = ~/scripts/pavolume.sh
-#exec-if = pacmd list-sinks | grep -q available
-#
-#click-left = ~/scripts/pavolume.sh --togmute
-#click-right = exec pavucontrol
-#scroll-up = ~/scripts/pavolume.sh --up
-#scroll-down = ~/scripts/pavolume.sh --down
+[module/pavolume]
+type = internal/pulseaudio
+inherit = module/basecolor
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-background = ${self.primary}
+format-volume-padding = 1
+
+label-volume = %percentage%%
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+label-muted = 
+format-muted-background = ${self.format-volume-background}
+format-muted-padding = 1
 
 #[module/bvolume]
 #type = internal/alsa
@@ -401,16 +403,16 @@ exec = ~/scripts/openweathermap-detailed.sh
 type = internal/network
 inherit = module/basecolor
 
-interface = enp4s0
+interface = eno1
 
-format-connected = " "
+format-connected = "  "
 #format-connected = "<label-connected>"
 format-connected-foreground = ${xrdb:*.color10}
 format-connected-background = ${self.primary}
 
 #label-connected = "  %local_ip% "
 
-format-disconnected = " "
+format-disconnected = "  "
 format-disconnected-foreground = ${xrdb:*.color1}
 format-disconnected-background = ${self.format-connected-background}
 
@@ -419,7 +421,7 @@ format-disconnected-background = ${self.format-connected-background}
 type = internal/network
 inherit = module/basecolor
 
-interface = wlp5s0
+interface = wlp7s0
 
 format-connected = "<ramp-signal> <label-connected> "
 format-connected-background = ${self.primary}

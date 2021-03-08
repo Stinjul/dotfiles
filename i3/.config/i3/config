@@ -128,7 +128,7 @@ set $w4 4:
 set $w5 5:
 set $w6 6:6
 set $w7 7:7
-set $w8 8:8
+set $w8 8:
 set $w9 9:
 set $w10 10:#IRC
 
@@ -239,21 +239,26 @@ client.background        $black
 
 # Start services and run commands
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
-#exec_always --no-startup-id "$HOME/.config/picom.sh"
+exec_always --no-startup-id "$HOME/.config/picom.sh"
 
 exec --no-startup-id "~/scripts/dein-update.sh"
 exec --no-startup-id "mpd; mpDris2"
 exec --no-startup-id "blueman-applet"
 exec --no-startup-id "dunst"
-exec --no-startup-id "feh --bg-fill ~/Pictures/Wallpapers/gurren-lagann-wallpaper.jpg"
+#exec --no-startup-id "feh --bg-fill ~/Pictures/Wallpapers/gurren-lagann-wallpaper.jpg"
 exec --no-startup-id "kdeconnect-indicator"
 exec --no-startup-id "calcurse-caldav --init=keep-remote; calcure --daemon"
+#exec --no-startup-id "cadence-session-start --system-start"
+#exec --no-startup-id "pipewire 2>&1 | logger -t pipewire"
+exec --no-startup-id "pipewire > /tmp/pipewire.log 2>&1"
+#exec --no-startup-id "pw-jack carla -n ~/Documents/carla/pipewire.carxp"
 
 # Launch terminal on first workspace
 exec --no-startup-id i3-msg 'workspace $w1; exec $term --name main_term'
 
 ### Miniplayer ###
 for_window [title="miniplayer"] sticky enable
+for_window [window_role="PictureInPicture"] sticky enable
 
 ### Window stuff ###
 for_window  [class="^.*"]                         border    pixel   3
@@ -270,11 +275,14 @@ for_window  [class="Blueman-.*"]                  floating  enable
 ### automove app to workspace ###
 assign  [class="^Firefox$"]           $w4
 assign  [class="^(?i)libreoffice.*"]  $w5
+assign  [class="^steam_app_.*"]       $w7
+assign  [class="^Steam$"]             $w8
 assign  [class="^discord$"]           $w9
 
 ### Scratchpad ###
 for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 958 550
+#for_window [instance="dropdown"] resize set 958 550
+for_window [instance="dropdown"] resize set 1441 824
 for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] border pixel 3
 

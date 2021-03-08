@@ -3,12 +3,16 @@
     "eslint.nodePath": "~/.npm-packages/lib64/node_modules/",
     "suggest.noselect": false,
     "yaml.schemas": {
-        "http://json.schemastore.org/Ansible-stable-2.7": "/*playbook*/*.yml"
+        "http://json.schemastore.org/ansible-role-2.9": ["/tasks/*.yml"]
     },
     "yaml.format.enable": true,
+    "yaml.trace.server": "verbose",
     "r.trace.server": "verbose",
     "r.lsp.debug": true,
     "cs.trace.server": "verbose",
+    "groovy.trace.server": "verbose",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintPath": "pylint",
     "stylelint.filetypes": [
         "css",
         "wxss",
@@ -24,6 +28,16 @@
             "args": ["start"],
             "filetypes": ["sh"],
             "ignoredRootPaths": ["~"]
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
         }
     }
 }
