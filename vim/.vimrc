@@ -67,7 +67,7 @@ if dein#load_state('~/.cache/dein')
     "" (R)markdown table manipulation
     call dein#add('dhruvasagar/vim-table-mode', {"on_ft" : ['md', 'rmd', 'markdown', 'rmarkdown']})
     "" Discord status
-    call dein#add('ananagame/vimsence')
+    call dein#add('hugolgst/vimsence')
     "" Read local editor config files
     call dein#add('editorconfig/editorconfig-vim')
 

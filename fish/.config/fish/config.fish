@@ -9,11 +9,11 @@ set -x DOTNET_ROOT "/opt/dotnet_core"
 set -x SPARK_LOCAL_IP "127.0.0.1"
 set -x WIREPLUMBER_DEBUG "4"
 
-set -g theme_display_user no
-set -g theme_display_hostname no
-set -g theme_color_scheme terminal-dark
-set -g theme_nerd_fonts yes
-set -g theme_display_k8s_context yes
+#set -g theme_display_user no
+#set -g theme_display_hostname no
+#set -g theme_color_scheme terminal-dark
+#set -g theme_nerd_fonts yes
+#set -g theme_display_k8s_context yes
 
 fish_vi_key_bindings
 
@@ -24,6 +24,14 @@ function rmdDoc
     nvim $argv
 end
 funcsave rmdDoc
+
+function _tide_item_k8s
+    if kubectx -c >/dev/null 2>&1
+        set_color $tide_k8s_color
+        printf '%s' (kubectx -c) ':' (kubens -c)
+    end
+end
+funcsave _tide_item_k8s
 
 alias toggle 'mpc toggle'
 alias next 'mpc next'

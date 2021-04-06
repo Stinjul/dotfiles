@@ -13,8 +13,8 @@ super + Tab
 {super + KP_Subtract,XF86AudioLowerVolume}
 	mpc volume -2
 
-super + KP_Multiply
-	~/scripts/rofi/mpc.sh
+super + {KP_Divide, KP_Multiply}
+	~/scripts/rofi/playerctl_selector.sh {-r, }
 
 {XF86AudioPlay,XF86AudioPause,XF86AudioStop,XF86AudioNext,XF86AudioPrev}
 	mpc {play,pause,stop,next,prev}

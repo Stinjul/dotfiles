@@ -2,6 +2,9 @@
 .netrwhist
 
 fish_variables
+fish/.config/fish/functions/
+fish/.config/fish/completions/
+fish/.config/fish/conf.d/
 
 mpd/.config/mpd/database
 mpd/.config/mpd/log
