@@ -16,6 +16,7 @@ set -x WIREPLUMBER_DEBUG "4"
 #set -g theme_display_k8s_context yes
 
 fish_vi_key_bindings
+fish_add_path $HOME/.krew/bin/
 
 alias texclean='~/scripts/clean-latex.sh'
 alias pipes='~/scripts/pipes.sh'

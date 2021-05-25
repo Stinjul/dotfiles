@@ -1,0 +1,17 @@
+# vi: ft=sh
+
+function send_notify() {
+    who | cut -f1 -d ' ' | while read -r user; do
+        user_home=$(getent passwd $user | cut -f6 -d: )
+        dbus_path="${user_home}/.dbus/session-bus/"
+        echo $(ls $dbus_path) | while read -r dbus_session; do
+            DISPLAY=":$(echo $dbus_session | cut -f2 -d-)"
+            DBUS_SESSION_BUS_ADDRESS=$(cat "$dbus_path/$dbus_session" | grep "DBUS_SESSION_BUS_ADDRESS=" | cut -f2 -d "'")
+            sudo -u $user DISPLAY=$DISPLAY DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS notify-send -i network-wired-no-route-symbolic.symbolic "$1"
+        done
+    done
+}
+
+if $if_up && [ "$reason" = "IPV4LL" ]; then
+    send_notify "$interface is using a link-local address"
+fi

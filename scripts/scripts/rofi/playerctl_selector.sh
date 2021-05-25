@@ -15,7 +15,7 @@ while getopts ":rc:" opt; do
             reset=1
             ;;
         c)
-            player_cmd=${OPTARG}
+            player_cmd="$OPTARG"
             ;;
     esac
 done

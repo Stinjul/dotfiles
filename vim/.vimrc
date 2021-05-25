@@ -129,6 +129,10 @@ hi SpellBad ctermbg=9
 hi SpellCap ctermbg=12
 hi SpellLocal ctermbg=14
 hi SpellRare ctermbg=13
+hi DiffText     ctermbg=3 ctermfg=0
+hi DiffChange   ctermbg=4 ctermfg=0
+hi DiffDelete   ctermbg=1 ctermfg=0
+hi DiffAdd      ctermbg=2 ctermfg=0
 
 " Enable relativenumber only on focused window
 set number relativenumber
@@ -167,7 +171,9 @@ autocmd FileType r let r_indent_align_args = 0
 
 
 " CoC
-let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-pyright', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-omnisharp', 'coc-yaml', 'coc-java', 'coc-metals', 'coc-groovy', 'coc-fsharp']
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-pyright', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-omnisharp', 'coc-yaml', 'coc-java', 'coc-metals', 'coc-groovy', 'coc-fsharp', 'coc-sh']
+
+set runtimepath^=/home/stinjul/Git_Projects/js/coc-plugins/coc-opa
 
 " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

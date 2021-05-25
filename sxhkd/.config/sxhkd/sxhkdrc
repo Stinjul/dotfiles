@@ -8,10 +8,12 @@ super + Tab
 	rofi -show window -theme ~/.cache/wal/colors-rofi-dark.rasi
 
 {super + KP_Add,XF86AudioRaiseVolume}
-	mpc volume +2
+	~/scripts/rofi/playerctl_selector.sh -c 'volume 0.05+'
+	#mpc volume +2
 
 {super + KP_Subtract,XF86AudioLowerVolume}
-	mpc volume -2
+	~/scripts/rofi/playerctl_selector.sh -c 'volume 0.05-'
+	#mpc volume -2
 
 super + {KP_Divide, KP_Multiply}
 	~/scripts/rofi/playerctl_selector.sh {-r, }

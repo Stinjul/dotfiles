@@ -165,7 +165,8 @@
     # Paths to default icons.
     #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
     #icon_path = /usr/share/icons/HighContrast/16x16/status/:/usr/share/icons/HighContrast/16x16/devices/
-    icon_path = /usr/share/icons/Papirus/16x16/actions/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/status/
+    #icon_path = /usr/share/icons/Papirus/16x16/actions/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/status/
+    icon_path = /usr/share/icons/Adwaita/64x64/actions/:/usr/share/icons/Adwaita/64x64/devices/:/usr/share/icons/Adwaita/64x64/status/
 
     ### History ###
 
