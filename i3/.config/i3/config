@@ -240,6 +240,7 @@ client.background        $black
 # Start services and run commands
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 exec_always --no-startup-id "$HOME/.config/picom.sh"
+exec_always --no-startup-id "$HOME/.config/pipewire.sh"
 
 exec --no-startup-id "~/scripts/dein-update.sh"
 exec --no-startup-id "mpd; mpDris2"
@@ -249,8 +250,6 @@ exec --no-startup-id "dunst"
 exec --no-startup-id "kdeconnect-indicator"
 exec --no-startup-id "calcurse-caldav --init=keep-remote; calcure --daemon"
 #exec --no-startup-id "cadence-session-start --system-start"
-#exec --no-startup-id "pipewire 2>&1 | logger -t pipewire"
-exec --no-startup-id "pipewire > /tmp/pipewire.log 2>&1"
 #exec --no-startup-id "pw-jack carla -n ~/Documents/carla/pipewire.carxp"
 
 # Launch terminal on first workspace
