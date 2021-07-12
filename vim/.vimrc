@@ -50,7 +50,10 @@ if dein#load_state('~/.cache/dein')
     "" replaced by coc-omnisharp
     " call dein#add('OmniSharp/omnisharp-vim')
     "" Multilanguage support
-    call dein#add('sheerun/vim-polyglot')
+    " call dein#add('sheerun/vim-polyglot')
+    " treesitter
+    call dein#add('nvim-treesitter/nvim-treesitter')
+    call dein#add('nvim-treesitter/playground')
 
     " Snippets
     call dein#add('honza/vim-snippets')
@@ -169,11 +172,33 @@ autocmd FileType python setlocal equalprg=
 " Fix autindent aligning with brackets
 autocmd FileType r let r_indent_align_args = 0
 
+" nvim-treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+  playground = {
+    enable = true,
+  }
+}
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.rego = {
+  install_info = {
+    url = "~/Git_Projects/tree-sitter-rego", -- local path or git repo
+    files = {"src/parser.c"}
+  },
+  -- filetype = "rego", -- if filetype does not agrees with parser name
+}
+EOF
+
 
 " CoC
-let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-pyright', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-omnisharp', 'coc-yaml', 'coc-java', 'coc-metals', 'coc-groovy', 'coc-fsharp', 'coc-sh']
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-pyright', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-omnisharp', 'coc-yaml', 'coc-java', 'coc-metals', 'coc-groovy', 'coc-fsharp', 'coc-sh', 'coc-rls']
 
-set runtimepath^=/home/stinjul/Git_Projects/js/coc-plugins/coc-opa
+" set runtimepath^=/home/stinjul/Git_Projects/js/coc-plugins/coc-opa
 
 " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

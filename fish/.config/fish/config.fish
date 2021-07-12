@@ -17,6 +17,7 @@ set -x WIREPLUMBER_DEBUG "4"
 
 fish_vi_key_bindings
 fish_add_path $HOME/.krew/bin/
+fish_add_path $HOME/.cargo/bin
 
 alias texclean='~/scripts/clean-latex.sh'
 alias pipes='~/scripts/pipes.sh'

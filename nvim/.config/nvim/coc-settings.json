@@ -13,6 +13,7 @@
     "groovy.trace.server": "verbose",
     "python.linting.pylintEnabled": true,
     "python.linting.pylintPath": "pylint",
+    "rust-client.channel": "stable",
     "stylelint.filetypes": [
         "css",
         "wxss",

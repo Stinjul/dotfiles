@@ -196,14 +196,16 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #  More info visit: https://github.com/Airblader/i3
 # Uncomment bellow lines if your using i3-gaps
 
-smart_gaps on
-smart_borders on
+# smart_gaps on
+# smart_borders on
 
 #Global gaps size
-gaps inner 15
-gaps outer 0
+# gaps inner 15
+# gaps outer 0
+#
+# bindsym $mod+Shift+g gaps inner all toggle 15
 
-bindsym $mod+Shift+g gaps inner all toggle 15
+hide_edge_borders smart
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -275,6 +277,7 @@ for_window  [class="Blueman-.*"]                  floating  enable
 assign  [class="^Firefox$"]           $w4
 assign  [class="^(?i)libreoffice.*"]  $w5
 assign  [class="^steam_app_.*"]       $w7
+assign  [title=".*(?i)wine.*"]       $w7
 assign  [class="^Steam$"]             $w8
 assign  [class="^discord$"]           $w9
 
