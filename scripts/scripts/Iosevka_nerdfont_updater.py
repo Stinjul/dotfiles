@@ -8,8 +8,9 @@ cwd = os.getcwd()
 
 def update_files(src_dir: str):
     for dir in next(os.walk(cwd))[1]:
+        srcfilename = f'iosevka-fixed-{dir.replace("-","").lower()}.ttf'
         filename = f'iosevka-term-{dir.replace("-","").lower()}.ttf'
-        src = f'{src_dir}{filename}'
+        src = f'{src_dir}{srcfilename}'
         dst = f'{cwd}/{dir}/{filename}'
         copyfile(src, dst)
 
