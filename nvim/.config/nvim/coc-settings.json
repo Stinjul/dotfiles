@@ -1,6 +1,7 @@
 {
     "eslint.packageManager": "npm",
     "eslint.nodePath": "~/.npm-packages/lib64/node_modules/",
+    "prettier.tabWidth": 4,
     "suggest.noselect": false,
     "yaml.schemas": {
         "http://json.schemastore.org/ansible-role-2.9": ["/tasks/*.yml"]
@@ -13,6 +14,7 @@
     "groovy.trace.server": "verbose",
     "python.linting.pylintEnabled": true,
     "python.linting.pylintPath": "pylint",
+    "python.analysis.useLibraryCodeForTypes" : true,
     "rust-client.channel": "stable",
     "stylelint.filetypes": [
         "css",

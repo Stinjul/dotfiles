@@ -19,19 +19,37 @@ k9s:
   clusters:
     k3d-mgmt-cluster:
       namespace:
-        active: grafana
+        active: postgres-operator
         favorites:
+        - postgres-operator
+        - minio-operator
         - grafana
-        - argo
-        - monitoring
-        - keycloak
-        - olm
-        - argocd
+        - superset
+        - minio-main-tenant
+        - promtail
+        - loki
         - kube-system
-        - all
+        - cert-manager
+      view:
+        active: ns
+      featureGates:
+        nodeShell: false
+      shellPod:
+        image: busybox:1.31
+        command: []
+        args: []
+        namespace: default
+        limits:
+          cpu: 100m
+          memory: 100Mi
+      portForwardAddress: localhost
+    k8s-backend.digipolis.be:
+      namespace:
+        active: default
+        favorites:
         - default
       view:
-        active: persistentvolume
+        active: ctx
       featureGates:
         nodeShell: false
       shellPod:

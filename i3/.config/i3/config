@@ -242,15 +242,18 @@ client.background        $black
 # Start services and run commands
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 exec_always --no-startup-id "$HOME/.config/picom.sh"
-exec_always --no-startup-id "$HOME/.config/pipewire.sh"
+exec_always --no-startup-id "gentoo-pipewire-launcher"
+exec_always --no-startup-id "$HOME/.config/mpd.sh"
+#exec_always --no-startup-id "pkill -x mpd\|mpDris2; sleep 1; mpd; mpDris2"
+
 
 exec --no-startup-id "~/scripts/dein-update.sh"
-exec --no-startup-id "mpd; mpDris2"
 exec --no-startup-id "blueman-applet"
 exec --no-startup-id "dunst"
 #exec --no-startup-id "feh --bg-fill ~/Pictures/Wallpapers/gurren-lagann-wallpaper.jpg"
 exec --no-startup-id "kdeconnect-indicator"
 exec --no-startup-id "calcurse-caldav --init=keep-remote; calcure --daemon"
+exec --no-startup-id "keepassxc"
 #exec --no-startup-id "cadence-session-start --system-start"
 #exec --no-startup-id "pw-jack carla -n ~/Documents/carla/pipewire.carxp"
 
@@ -272,6 +275,7 @@ for_window  [window_type="dialog"]                floating  enable
 for_window  [window_type="menu"]                  floating  enable
 for_window  [class="Pavucontrol"]                 floating  enable
 for_window  [class="Blueman-.*"]                  floating  enable
+for_window  [class="Jokolay"]                     floating  enable
 
 ### automove app to workspace ###
 assign  [class="^Firefox$"]           $w4

@@ -51,9 +51,11 @@ if dein#load_state('~/.cache/dein')
     " call dein#add('OmniSharp/omnisharp-vim')
     "" Multilanguage support
     " call dein#add('sheerun/vim-polyglot')
-    " treesitter
+    "" treesitter
     call dein#add('nvim-treesitter/nvim-treesitter')
     call dein#add('nvim-treesitter/playground')
+    "" jsonnet
+    call dein#add('google/vim-jsonnet')
 
     " Snippets
     call dein#add('honza/vim-snippets')
@@ -218,6 +220,7 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 
 nmap <leader>qf <Plug>(coc-fix-current)
+nmap <leader>ca <Plug>(coc-codeaction-line)
 nmap <leader>cf <Plug>(coc-format)
 
 
