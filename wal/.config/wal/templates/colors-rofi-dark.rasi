@@ -173,4 +173,4 @@ prompt {{
     text-color: @normal-foreground;
 }}
 
-/* vim:ft=css */
+/* vim: set ft=css: */

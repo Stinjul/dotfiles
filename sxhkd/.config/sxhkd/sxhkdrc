@@ -33,3 +33,15 @@ super + shift + x
 
 super + shift + m
 	~/scripts/rofi/monitor_layout.sh
+
+ctrl + space
+	~/scripts/dunst-active-or-passthrough.sh close "ctrl space"
+
+ctrl + shift + space
+	~/scripts/dunst-active-or-passthrough.sh close-all "ctrl shift space"
+
+ctrl + Tab
+	dunstctl history-pop
+
+ctrl + shift + Tab
+	dunstctl context

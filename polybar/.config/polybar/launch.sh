@@ -23,7 +23,7 @@
   tray_output=eDP1
 
   for m in $outputs; do
-    if [[ $m == "DVI-D-0" ]]; then
+    if [[ $m == "DVI-D-0" || $m == "DisplayPort-0" ]]; then
         tray_output=$m
     fi
   done

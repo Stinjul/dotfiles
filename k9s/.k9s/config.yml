@@ -19,19 +19,18 @@ k9s:
   clusters:
     k3d-mgmt-cluster:
       namespace:
-        active: postgres-operator
+        active: minio-main-tenant
         favorites:
+        - cortex
+        - all
         - postgres-operator
         - minio-operator
         - grafana
         - superset
         - minio-main-tenant
         - promtail
-        - loki
-        - kube-system
-        - cert-manager
       view:
-        active: ns
+        active: configmap
       featureGates:
         nodeShell: false
       shellPod:
