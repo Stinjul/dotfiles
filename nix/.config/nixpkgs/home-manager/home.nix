@@ -24,5 +24,6 @@
     pkgs.jmeter
     pkgs.elixir_ls
     pkgs.talosctl
+    pkgs.rnix-lsp
   ];
 }

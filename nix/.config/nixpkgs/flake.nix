@@ -1,5 +1,6 @@
 {
   description = "Home Manager configuration";
+  # https://github.com/Misterio77/nix-starter-configs/blob/main/minimal/flake.nix
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
