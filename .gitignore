@@ -2,6 +2,7 @@
 .netrwhist
 
 fish_variables
+fish.config/fish/fishd.tmp*
 fish/.config/fish/functions/
 fish/.config/fish/completions/
 fish/.config/fish/conf.d/

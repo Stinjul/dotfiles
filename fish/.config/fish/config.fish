@@ -11,6 +11,7 @@ set -x SPARK_LOCAL_IP "127.0.0.1"
 set -x WIREPLUMBER_DEBUG "3"
 set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on"
 set -x XDG_CURRENT_DESKTOP "sway"
+set -x NIX_PATH $HOME/.nix-defexpr/channels
 
 #set -g theme_display_user no
 #set -g theme_display_hostname no
