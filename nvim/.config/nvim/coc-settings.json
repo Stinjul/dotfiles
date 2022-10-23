@@ -18,7 +18,9 @@
     "python.analysis.useLibraryCodeForTypes" : true,
     "python.formatting.autopep8Path": "/usr/bin/autopep8",
     "pyright.disableDiagnostics": false,
+    "omnisharp.version": "v1.37.6",
     "rust-client.channel": "stable",
+    "elixir.pathToElixirLS": "elixir-ls",
     "stylelint.filetypes": [
         "css",
         "wxss",

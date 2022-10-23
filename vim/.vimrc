@@ -13,26 +13,15 @@ if dein#load_state('~/.cache/dein')
     " Filtypes
     "" Gentoo files
     call dein#add('gentoo/gentoo-syntax')
-    "" R
-    "" replaced by polyglot
-    " call dein#add('jalvesaq/Nvim-R')
-    "" Fish
-    "" replaced by polyglot
-    " call dein#add('dag/vim-fish')
     "" Pandoc markdown and RMarkdown
     call dein#add('vim-pandoc/vim-pandoc')
     call dein#add('vim-pandoc/vim-pandoc-syntax')
-    call dein#add('vim-pandoc/vim-rmarkdown')
-    "" Powershell
-    "" replaced by polyglot
-    " call dein#add('PProvost/vim-ps1')
+    "call dein#add('vim-pandoc/vim-rmarkdown')
     "" Sxhkd
     call dein#add('kovetskiy/sxhkd-vim')
     "" Ansible YML
     "call dein#add('pearofducks/ansible-vim')
     "" C# extended support
-    "" replaced by polyglot
-    "call dein#add('OrangeT/vim-csharp')
 
     " Git stuff
     call dein#add('tpope/vim-fugitive')
@@ -46,23 +35,16 @@ if dein#load_state('~/.cache/dein')
     call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
     "" LSP symbol and tag viewer
     call dein#add('liuchengxu/vista.vim')
-    "" C# langserver
-    "" replaced by coc-omnisharp
-    " call dein#add('OmniSharp/omnisharp-vim')
-    "" Multilanguage support
-    " call dein#add('sheerun/vim-polyglot')
     "" treesitter
-    call dein#add('nvim-treesitter/nvim-treesitter')
+    call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
     call dein#add('nvim-treesitter/playground')
-    "" jsonnet
-    call dein#add('google/vim-jsonnet')
 
     " Snippets
     call dein#add('honza/vim-snippets')
 
     " Misc
     "" Denite (like fzf, ctrlp, unite, ...)
-    
+
     "" Argumant wrapping
     call dein#add('FooSoft/vim-argwrap')
     "" Grammar checker
@@ -125,7 +107,7 @@ set wildmenu
 let mapleader=","
 
 " Colors
-colorscheme peachpuff
+colorscheme default
 hi VertSplit ctermfg=3
 set fillchars+=vert:┃
 hi StatusLine ctermfg=233
@@ -169,15 +151,10 @@ endif
 " Fix python reindent
 autocmd FileType python setlocal equalprg=
 
-
-" Polyglot
-" Fix autindent aligning with brackets
-autocmd FileType r let r_indent_align_args = 0
-
 " nvim-treesitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
   },
@@ -194,11 +171,13 @@ parser_config.rego = {
   },
   -- filetype = "rego", -- if filetype does not agrees with parser name
 }
+
+local ft_to_parser = require('nvim-treesitter.parsers').filetype_to_parsername
+ft_to_parser.rmd = 'markdown'
 EOF
 
-
 " CoC
-let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-json', 'coc-pyright', 'coc-highlight', 'coc-lists', 'coc-stylelint', 'coc-r-lsp', 'coc-omnisharp', 'coc-yaml', 'coc-java', 'coc-metals', 'coc-groovy', 'coc-fsharp', 'coc-sh', 'coc-rls']
+let g:coc_global_extensions = ['coc-css', 'coc-elixir', 'coc-eslint', 'coc-fsharp', 'coc-go', 'coc-groovy', 'coc-highlight', 'coc-html', 'coc-java', 'coc-json', 'coc-lists', 'coc-metals', 'coc-omnisharp', 'coc-prettier', 'coc-pyright', 'coc-r-lsp', 'coc-rls', 'coc-sh', 'coc-snippets', 'coc-sql', 'coc-stylelint', 'coc-tsserver', 'coc-xml', 'coc-yaml']
 
 " set runtimepath^=/home/stinjul/Git_Projects/js/coc-plugins/coc-opa
 
@@ -207,14 +186,15 @@ let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-snippets', 'coc-prett
 " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ coc#pum#visible() ? coc#_select_confirm() :
+            \ coc#expandableOrJumpable() ?
+            \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 let g:coc_snippet_next = '<tab>'

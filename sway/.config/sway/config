@@ -21,19 +21,6 @@ set $term kitty
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu rofi
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-output * mode 2560x1440@119.998Hz
-
 ### Idle configuration
 #
 # Example configuration:
@@ -98,11 +85,17 @@ input "0:0:virtual_keyboard" {
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-    bindsym Control+space exec ~/scripts/dunst-active-or-passthrough.sh close 'ctrl+space'
-    bindsym Control+Shift+space exec ~/scripts/dunst-active-or-passthrough.sh close-all 'ctrl+shift+space'
+    #bindsym Control+n exec ~/scripts/dunst-active-or-passthrough.sh close 'ctrl+space'
+    #bindsym Control+Shift+n exec ~/scripts/dunst-active-or-passthrough.sh close-all 'ctrl+shift+space'
+
+    bindsym $mod+n exec dunstctl close
+    bindsym $mod+Shift+n exec dunstctl close-all
 
     bindsym Control+Tab exec dunstctl history-pop
     bindsym Control+Shift+Tab exec dunstctl context
+
+    bindsym $mod+Alt+s exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | wl-copy
+    bindsym $mod+Control+s exec grim -g "$(slurp)" - | wl-copy
 
 #
 # Moving around:
