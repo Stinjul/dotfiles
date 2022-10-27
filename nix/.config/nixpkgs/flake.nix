@@ -18,18 +18,23 @@
       ];
     in
     rec {
+      overlays = {
+        default = import ./overlay { inherit inputs; };
+      };
+
       legacyPackages = forAllSystems (system:
         import inputs.nixpkgs {
           inherit system;
+          overlays = builtins.attrValues overlays;
           config.allowUnfree = true;
         }
       );
 
       homeConfigurations = {
         "stinjul@zentoo" = home-manager.lib.homeManagerConfiguration {
-        pkgs = legacyPackages.x86_64-linux;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [ ./home-manager/home.nix ];
+          pkgs = legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./home-manager/home.nix ];
         };
       };
     };
