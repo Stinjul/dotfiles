@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
     owner = "facebook";
     repo = "zstd";
     rev = "v${version}";
-    sha256 = "sha256-yJvhcysxcbUGuDOqe/TQ3Y5xyM2AUw6r1THSHOqmUy0=";
+    sha256 = "sha256-0ay3qlk4sffnmcl3b34q4zd7mkcmjds023icmib1mdli97qcp38l";
   };
 
   nativeBuildInputs = [ cmake ]
