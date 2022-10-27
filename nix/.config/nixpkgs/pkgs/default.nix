@@ -1,3 +1,3 @@
 { pkgs }: {
-  old-zstd = pkgs.callPackage ./zstd { };
+  # old-zstd = pkgs.callPackage ./zstd { };
 }
