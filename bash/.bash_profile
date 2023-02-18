@@ -6,7 +6,7 @@
 if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then
     XDG_CURRENT_DESKTOP="sway";
     export XDG_CURRENT_DESKTOP;
-    dbus-run-session sway;
+    dbus-run-session sway > /tmp/sway.log 2>&1;
 fi
 
 if [[ -f ~/.bashrc ]] ; then

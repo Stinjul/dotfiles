@@ -8,10 +8,18 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # poetry2nix = {
+    #   url = "github:nix-community/poetry2nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    nixgl = {
+      url = "github:guibou/nixGL";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
     let
+      inherit (self) outputs;
       forAllSystems = nixpkgs.lib.genAttrs [
         "aarch64-linux"
         "x86_64-linux"
@@ -20,6 +28,7 @@
     rec {
       overlays = {
         default = import ./overlay { inherit inputs; };
+        nixgl = nixgl.overlay;
       };
 
       legacyPackages = forAllSystems (system:

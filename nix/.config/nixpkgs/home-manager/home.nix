@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "stinjul";
-  home.homeDirectory = "/home/stinjul";
+  home = {
+    username = "stinjul";
+    homeDirectory = "/home/stinjul";
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -25,5 +27,12 @@
     pkgs.elixir_ls
     pkgs.talosctl
     pkgs.rnix-lsp
+    pkgs.ccemux
+    pkgs.prismlauncher
+	pkgs.nixgl.nixGLIntel
+	pkgs.apache-directory-studio
+	pkgs.avalonia-ilspy
+	pkgs.devspace
+	pkgs.starsector
   ];
 }

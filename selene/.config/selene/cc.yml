@@ -1,0 +1,279 @@
+---
+base: lua51
+
+structs:
+  Colors:
+    white:
+      property: read-only
+    orange:
+      property: read-only
+    magenta:
+      property: read-only
+    lightBlue:
+      property: read-only
+    yellow:
+      property: read-only
+    lime:
+      property: read-only
+    pink:
+      property: read-only
+    gray:
+      property: read-only
+    lightGray:
+      property: read-only
+    cyan:
+      property: read-only
+    purple:
+      property: read-only
+    blue:
+      property: read-only
+    brown:
+      property: read-only
+    green:
+      property: read-only
+    red:
+      property: read-only
+    black:
+      property: read-only
+    combine:
+      args:
+        - type: ...
+    substract:
+      args:
+        - type: number
+        - type: ...
+    test:
+      args:
+        - type: number
+        - type: number
+    packRGB:
+      args:
+        - type: number
+        - type: number
+        - type: number
+    unpackRGB:
+      args:
+        - type: number
+    rgb8:
+      args:
+        - type: ...
+      deprecated:
+        replace:
+          - "packRGB(%1,%2,%3)"
+          - "unpackRGB(%1)"
+        message: "Use packRGB or unpackRGB directly."
+    toBlit:
+      args:
+        - type: number
+
+globals:
+  sleep:
+    args:
+      - type: number
+  write:
+    args:
+      - type: string
+  print:
+    args:
+      - type: ...
+  printError:
+    args:
+      - type: ...
+  read:
+    args:
+      - required: false
+        type: string
+      - required: false
+        type: table
+      - required: false
+        type: function
+      - required: false
+        type: string
+  _HOST:
+    property: read-only
+  _CC_DEFAULT_SETTINGS:
+    property: read-only
+  colors:
+    struct: Colors
+  colours:
+    struct: Colors
+  colours.grey:
+    property: read-only
+  colours.lightGrey:
+    property: read-only
+  commands.exec:
+    args:
+      - type: string
+  commands.execAsync:
+    args:
+      - type: string
+  commands.list:
+    args:
+      - type: ...
+  commands.getBlockPosition:
+    args: []
+  commands.getBlockInfos:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+      - type: number
+      - required: false
+        type: string
+  commands.getBlockInfo:
+    args:
+      - type: number
+      - type: number
+      - type: number
+      - required: false
+        type: string
+  commands.native:
+    any: true
+  commands.async:
+    any: true
+  disk.isPresent:
+    args:
+      - type: string
+  disk.getLabel:
+    args:
+      - type: string
+  disk.setLabel:
+    args:
+      - type: string
+      - type: string
+  disk.hasData:
+    args:
+      - type: string
+  disk.getMountPath:
+    args:
+      - type: string
+  disk.hasAudio:
+    args:
+      - type: string
+  disk.getAudioTitle:
+    args:
+      - type: string
+  disk.playAudio:
+    args:
+      - type: string
+  disk.stopAudio:
+    args:
+      - type: string
+  disk.eject:
+    args:
+      - type: string
+  disk.getID:
+    args:
+      - type: string
+  fs.complete:
+    args:
+      - type: ...
+  fs.isDriverRoot:
+    args:
+      - type: string
+  fs.list:
+    args:
+      - type: string
+  fs.combine:
+    args:
+      - type: string
+      - type: ...
+  fs.getName:
+    args:
+      - type: string
+  fs.getDir:
+    args:
+      - type: string
+  fs.getSize:
+    args:
+      - type: string
+  fs.exists:
+    args:
+      - type: string
+  fs.isDir:
+    args:
+      - type: string
+  fs.isReadOnly:
+    args:
+      - type: string
+  fs.makeDir:
+    args:
+      - type: string
+  fs.move:
+    args:
+      - type: string
+      - type: string
+  fs.copy:
+    args:
+      - type: string
+      - type: string
+  fs.delete:
+    args:
+      - type: string
+  fs.open:
+    args:
+      - type: string
+      - type: string
+  fs.getDrive:
+    args:
+      - type: string
+  fs.getFreeSpace:
+    args:
+      - type: string
+  fs.find:
+    args:
+      - type: string
+  fs.getCapacity:
+    args:
+      - type: string
+  fs.attributes:
+    args:
+      - type: string
+  gps.CHANNEL_GPS:
+    property: read-only
+  gps.locate:
+    args:
+      - required: false
+        type: number
+      - required: false
+        type: bool
+  help.path:
+    args: []
+  help.setPath:
+    args:
+      - type: string
+  help.lookup:
+    args:
+      - type: string
+  help.topics:
+    args: []
+  help.completeTopic:
+    args:
+      - type: string
+  http.get:
+    args:
+      - type: ...
+  http.post:
+    args:
+      - type: ...
+  http.request:
+    args:
+      - type: ...
+  http.checkURLAsync:
+    args:
+      - type: string
+  http.checkURL:
+    args:
+      - type: string
+  http.websocketAsync:
+    args:
+      - type: string
+      - required: false
+        type: table
+  http.websocket:
+    args:
+      - type: string
+      - required: false
+        type: table

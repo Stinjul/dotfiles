@@ -5,6 +5,7 @@ set -x EDITOR "nvim"
 set -x TERMINAL "kitty"
 set -x BROWSER "firefox"
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
+set -x PIPENV_VENV_IN_PROJECT 1
 set -x TEXINPUT .:/home/stan/Documents/School/templates/:$TEXINPUT
 set -x DOTNET_ROOT "/opt/dotnet_core"
 set -x SPARK_LOCAL_IP "127.0.0.1"
