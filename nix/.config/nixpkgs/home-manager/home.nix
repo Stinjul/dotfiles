@@ -52,5 +52,6 @@
 	pkgs.knife
 	pkgs.berkshelf
 	pkgs.test-kitchen
+	pkgs.inspec-bin
   ];
 }

@@ -5,4 +5,5 @@
   test-kitchen = pkgs.callPackage ./chef-workstation/test-kitchen { };
   berkshelf = pkgs.callPackage ./chef-workstation/berkshelf { };
   chef-cli = pkgs.callPackage ./chef-workstation/chef-cli { };
+  inspec-bin = pkgs.callPackage ./chef-workstation/inspec-bin { };
 }
