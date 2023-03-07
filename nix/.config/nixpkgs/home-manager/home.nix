@@ -1,6 +1,17 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, outputs, lib, config, pkgs, ... }: {
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      inputs.nixgl.overlay
+    ];
+    config = {
+      allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = (_: true);
+    };
+  };
 
-{
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home = {
@@ -16,7 +27,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.05";
+  home.stateVersion = "22.11";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -29,10 +40,17 @@
     pkgs.rnix-lsp
     pkgs.ccemux
     pkgs.prismlauncher
-	pkgs.nixgl.nixGLIntel
-	pkgs.apache-directory-studio
-	pkgs.avalonia-ilspy
-	pkgs.devspace
-	pkgs.starsector
+    pkgs.nixgl.nixGLIntel
+    pkgs.apache-directory-studio
+    pkgs.avalonia-ilspy
+    pkgs.devspace
+    pkgs.starsector
+    pkgs.font-manager
+	pkgs.bundix
+	pkgs.chef-cli
+	pkgs.cookstyle
+	pkgs.knife
+	pkgs.berkshelf
+	pkgs.test-kitchen
   ];
 }

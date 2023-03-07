@@ -26,24 +26,36 @@
       ];
     in
     rec {
-      overlays = {
-        default = import ./overlay { inherit inputs; };
-        nixgl = nixgl.overlay;
-      };
-
-      legacyPackages = forAllSystems (system:
-        import inputs.nixpkgs {
-          inherit system;
-          overlays = builtins.attrValues overlays;
-          config.allowUnfree = true;
-        }
+      packages = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in import ./pkgs { inherit pkgs; }
       );
+      devShells = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in import ./shell.nix { inherit pkgs; }
+      );
+      # overlays = {
+      #   default = import ./overlays { inherit inputs; };
+      #   nixgl = nixgl.overlay;
+      # };
+
+      overlays = import ./overlay { inherit inputs; };
+
+      # legacyPackages = forAllSystems (system:
+      #   import inputs.nixpkgs {
+      #     inherit system;
+      #     overlays = builtins.attrValues overlays;
+      #     config.allowUnfree = true;
+      #   }
+      # );
 
       homeConfigurations = {
         "stinjul@zentoo" = home-manager.lib.homeManagerConfiguration {
-          pkgs = legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home-manager/home.nix ];
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home-manager/home.nix
+          ];
         };
       };
     };
