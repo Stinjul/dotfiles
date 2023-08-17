@@ -53,5 +53,18 @@
 	pkgs.berkshelf
 	pkgs.test-kitchen
 	pkgs.inspec-bin
+	pkgs.chef-vault
+	pkgs.vault
+	pkgs.keystore-explorer
+	pkgs.jd-gui
+	pkgs.azure-cli
+	pkgs.nodePackages.cdktf-cli
+	pkgs.visualvm
+	pkgs.ventoy
+	pkgs.chromium
+    pkgs.globalprotect-openconnect
+    pkgs.payload-dumper-go
+    pkgs.robo3t
+    pkgs.r2modman
   ];
 }

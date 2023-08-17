@@ -6,4 +6,6 @@
   berkshelf = pkgs.callPackage ./chef-workstation/berkshelf { };
   chef-cli = pkgs.callPackage ./chef-workstation/chef-cli { };
   inspec-bin = pkgs.callPackage ./chef-workstation/inspec-bin { };
+  chef-vault = pkgs.callPackage ./chef-workstation/chef-vault { };
+  starsector-mod-manager-rust = pkgs.callPackage ./starsector-mod-manager-rust { };
 }
