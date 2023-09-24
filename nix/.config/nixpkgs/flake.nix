@@ -1,60 +1,63 @@
 {
-  description = "Home Manager configuration";
+  description = "Nix(os) configs";
   # https://github.com/Misterio77/nix-starter-configs/blob/main/minimal/flake.nix
 
   inputs = {
+    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
+
+    # Home manager
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    hardware.url = "github:nixos/nixos-hardware";
+    nixgl.url = "github:guibou/nixGL";
+    hyprland = {
+      url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # poetry2nix = {
-    #   url = "github:nix-community/poetry2nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    nixgl = {
-      url = "github:guibou/nixGL";
-    };
+
   };
 
-  outputs = { self, nixpkgs, home-manager, nixgl, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
-      forAllSystems = nixpkgs.lib.genAttrs [
+      lib = nixpkgs.lib // home-manager.lib;
+      systems = [
         "aarch64-linux"
         "x86_64-linux"
       ];
+      forEachSystem = f: lib.genAttrs systems (sys: f pkgsFor.${sys});
+      pkgsFor = nixpkgs.legacyPackages;
     in
-    rec {
-      packages = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs; }
-      );
-      devShells = forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./shell.nix { inherit pkgs; }
-      );
-      # overlays = {
-      #   default = import ./overlays { inherit inputs; };
-      #   nixgl = nixgl.overlay;
-      # };
+    {
+      # Custom packages
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
 
-      overlays = import ./overlay { inherit inputs; };
+      # Overlay for custom packages
+      overlays = import ./overlays { inherit inputs; };
+      # Custom modules
+      nixosModules = import ./modules/nixos;
+      # Custom home-manager modules
+      homeManagerModules = import ./modules/home-manager;
 
-      # legacyPackages = forAllSystems (system:
-      #   import inputs.nixpkgs {
-      #     inherit system;
-      #     overlays = builtins.attrValues overlays;
-      #     config.allowUnfree = true;
-      #   }
-      # );
+      # 'nixos-rebuild --flake .#hostname'
+      nixosConfigurations = {
+        nixtop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nixos/configuration.nix
+          ];
+        };
+      };
 
+      # 'home-manager --flake .#stinjul@hostname'
       homeConfigurations = {
         "stinjul@zentoo" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./home-manager/home.nix
+            ./home-manager/stinjul/zentoo.nix
           ];
         };
       };
