@@ -1,0 +1,11 @@
+(defwidget activewindow []
+  (box
+    :valign "center"
+    :space-evenly false
+    :orientation "v"
+    (label
+      :limit-width 40
+      :text "${awin.title}"
+    )
+  )
+)

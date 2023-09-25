@@ -1,7 +1,8 @@
 {
     "height" : 18,
-    "modules-left": ["sway/workspaces", "sway/mode", "mpd"],
-    "modules-center": ["sway/window"],
+    "layer": "top",
+    "modules-left": ["sway/workspaces", "hyprland/workspaces", "sway/mode", "mpd"],
+    "modules-center": ["sway/window", "hyprland/window"],
     "modules-right": ["idle_inhibitor", "pulseaudio", "network", "keyboard-state", "sway/language", "clock", "tray"],
     "keyboard-state": {
         "numlock": true,
@@ -17,6 +18,10 @@
     },
     "sway/workspaces": {
         "enable-bar-scroll": true
+    },
+    "hyprland/workspaces": {
+        "active-only": false,
+        "show-special": false
     },
     "sway/language" : {
         "format": "{short} {variant}",
@@ -61,8 +66,13 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}",
+        "calendar" : {
+            "format" : {
+                "today": "<b><u>{}</u></b>"
+            }
+        }
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface

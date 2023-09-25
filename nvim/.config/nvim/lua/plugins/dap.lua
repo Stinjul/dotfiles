@@ -2,6 +2,26 @@ local dap = require("dap")
 local dapui = require("dapui")
 local mason = require("mason-nvim-dap")
 
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
+  name = 'lldb'
+}
+
+dap.configurations.cpp = {
+  {
+    name = 'Launch',
+    type = 'lldb',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+  },
+}
+
 dap.adapters.elixir = {
 	type = "executable",
 	command = "elixir-ls-debugger", -- debugger.bat for windows

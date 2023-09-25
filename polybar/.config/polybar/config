@@ -4,14 +4,14 @@
 width = 100%
 height = 18
 
-monitor = ${env:MONITOR:eDP-1-1}
+monitor = ${env:MONITOR:DP-2}
 
 background = ${xrdb:*.background}
 foreground = ${xrdb:*.foreground}
 
 fixed-center = true
 
-font-0 = Iosevka Nerd Font:pixelsize=11;2
+font-0 = IosevkaTerm Nerd Font:pixelsize=11;2
 
 modules-left = i3 sepL mpd sepL
 modules-center = weather

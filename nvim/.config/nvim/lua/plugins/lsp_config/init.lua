@@ -2,6 +2,8 @@ local mason = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
 local jsonls_config = require("plugins.lsp_config.jsonls")
+local efm_config = require("plugins.lsp_config.efm")
+local templ_config = require("plugins.lsp_config.templ")
 
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
@@ -34,7 +36,7 @@ mason.setup({
 })
 
 local servers = {
-	sumneko_lua = {
+	lua_ls = {
 		on_attach = function(client)
 			client.server_capabilities.document_formatting = false
 			client.server_capabilities.document_range_formatting = false
@@ -45,7 +47,7 @@ local servers = {
 					enable = false,
 				},
 				workspace = {
-					userThirdParty = vim.fn.expand("$HOME/.config/nvim/sumneko_lua_envsEEE"),
+					userThirdParty = { vim.fn.expand("$HOME/.config/nvim/sumneko_lua_envs") },
 				},
 			},
 		},
@@ -56,6 +58,7 @@ local servers = {
 	eslint = {},
 	fsautocomplete = {},
 	gopls = {},
+    templ = {},
 	groovyls = {},
 	html = {},
 	jdtls = {},
@@ -71,6 +74,7 @@ local servers = {
 	rnix = {},
 	rust_analyzer = {},
 	bashls = {},
+	solargraph = {},
 	sqlls = {},
 	stylelint_lsp = {},
 	terraformls = {},
@@ -79,11 +83,11 @@ local servers = {
 	yamlls = {},
 	vimls = {},
 	powershell_es = {},
-	prismals = {},
+	efm = efm_config,
 }
 
 for server, options in pairs(servers) do
-	lspconfig[server].setup({
+    local server_setup = {
 		capabilities = require("cmp_nvim_lsp").default_capabilities(
 			vim.tbl_extend("force", vim.lsp.protocol.make_client_capabilities(), options.capabilities or {})
 		),
@@ -95,7 +99,14 @@ for server, options in pairs(servers) do
 			on_attach(client, bufnr)
 		end,
 		settings = options.settings,
-	})
+    }
+    if options.filetypes then
+        server_setup.filetypes = options.filetypes
+    end
+    if options.init_options then
+        server_setup.init_options = options.init_options
+    end
+	lspconfig[server].setup(server_setup)
 end
 
 return {

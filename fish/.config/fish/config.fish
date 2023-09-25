@@ -14,6 +14,8 @@ set -x _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=on"
 set -x XDG_CURRENT_DESKTOP "sway"
 set -x NIX_PATH $HOME/.nix-defexpr/channels
 
+fish_add_path $HOME/go/bin/
+
 #set -g theme_display_user no
 #set -g theme_display_hostname no
 #set -g theme_color_scheme terminal-dark

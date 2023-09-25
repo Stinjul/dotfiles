@@ -1,0 +1,47 @@
+(include "./modules/activewindow.yuck")
+
+(defvar RES_WIDTH 1440)
+(deflisten awin "scripts/activewindow.sh")
+
+(defwidget left []
+    (box
+            "LEFT"
+    )
+)
+
+(defwidget center []
+    (box
+            (activewindow)
+    )
+)
+
+(defwidget right []
+    (box
+            "RIGHT"
+    )
+)
+
+(defwidget bar [] ; Class .bar applies automatically
+    (centerbox
+        :orientation "h"
+        (left)
+        (center)
+        (right)
+    )
+)
+
+(defwindow bar
+  :stacking "fg"
+  :wm-ignore true
+  :monitor 0
+  :namespace "bar"
+  :geometry (geometry
+    :x "0%"
+    :y "80%"
+    :width "100%"
+    :height "69px"
+    :anchor "top center"
+  )
+  :exclusive false
+  (bar)
+)

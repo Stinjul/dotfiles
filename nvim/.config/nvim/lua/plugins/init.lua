@@ -21,8 +21,15 @@ local packer_bootstrap = ensure_packer()
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
+	use("folke/neodev.nvim")
+
 	use("tpope/vim-fugitive")
-	use("airblade/vim-gitgutter")
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
 
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -46,9 +53,15 @@ return require("packer").startup(function(use)
 
 	use("FooSoft/vim-argwrap")
 	use("rhysd/vim-grammarous")
-	use("machakann/vim-sandwich")
+	use({
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({})
+		end,
+	})
 
 	use("gpanders/editorconfig.nvim")
+	use("elkowar/yuck.vim")
 
 	use({
 		"williamboman/mason.nvim",
@@ -59,21 +72,21 @@ return require("packer").startup(function(use)
 
 	use({
 		"neovim/nvim-lspconfig",
-		requires = { "williamboman/mason-lspconfig.nvim", "williamboman/mason.nvim" },
-		after = { "mason.nvim", "mason-lspconfig.nvim" },
+		requires = { "williamboman/mason-lspconfig.nvim", "williamboman/mason.nvim", "creativenull/efmls-configs-nvim" },
+		after = { "mason.nvim", "mason-lspconfig.nvim", "nvim-cmp" },
 		config = function()
 			require("plugins.lsp_config")
 		end,
 	})
 
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		requires = { "nvim-lua/plenary.nvim", "jayp0521/mason-null-ls.nvim" },
-		after = { "mason.nvim", "nvim-lspconfig" },
-		config = function()
-			require("plugins.null_ls")
-		end,
-	})
+    -- use({
+	-- 	"jose-elias-alvarez/null-ls.nvim",
+	-- 	requires = { "nvim-lua/plenary.nvim", "jayp0521/mason-null-ls.nvim" },
+	-- 	after = { "mason.nvim", "nvim-lspconfig" },
+	-- 	config = function()
+	-- 		require("plugins.null_ls")
+	-- 	end,
+	-- })
 
 	use({
 		"mfussenegger/nvim-dap",
@@ -86,7 +99,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"hrsh7th/nvim-cmp",
-		requires = { "hrsh7th/cmp-nvim-lsp", "saadparwaiz1/cmp_luasnip" },
+		requires = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-path", "saadparwaiz1/cmp_luasnip" },
 		config = function()
 			require("plugins.cmp")
 		end,
@@ -122,6 +135,41 @@ return require("packer").startup(function(use)
 		"folke/trouble.nvim",
 		config = function()
 			require("trouble").setup({})
+		end,
+	})
+
+	use({
+		"epwalsh/obsidian.nvim",
+		config = function()
+			require("plugins.obsidian")
+		end,
+	})
+
+	use({
+		"nvim-neorg/neorg",
+		requires = { { "nvim-lua/plenary.nvim" } },
+		run = ":Neorg sync-parsers",
+		config = function()
+			require("neorg").setup({
+				load = {
+					["core.defaults"] = {},
+					["core.dirman"] = {
+						config = {
+							workspaces = {
+								home = "~/Documents/Notes",
+								work = "~/Work/Documents/Notes",
+							},
+							default_workspace = "home",
+						},
+					},
+					["core.concealer"] = {},
+					["core.completion"] = {
+						config = {
+							engine = "nvim-cmp",
+						},
+					},
+				},
+			})
 		end,
 	})
 

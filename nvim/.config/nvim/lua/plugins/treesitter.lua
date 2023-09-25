@@ -9,13 +9,25 @@ require("nvim-treesitter.configs").setup({
 })
 
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.rego = {
-	install_info = {
-		url = "~/git_projects/tree-sitter-rego", -- local path or git repo
-		files = { "src/parser.c" },
-	},
-	-- filetype = "rego", -- if filetype does not agrees with parser name
+parser_config.templ = {
+  install_info = {
+    url = "https://github.com/vrischmann/tree-sitter-templ.git",
+    files = {"src/parser.c", "src/scanner.c"},
+    branch = "master",
+  },
 }
+vim.filetype.add({
+    extension = { templ = 'templ' }
+})
+vim.treesitter.language.register('templ', 'templ')
 
-local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
-ft_to_parser.rmd = "markdown"
+-- parser_config.rego = {
+-- 	install_info = {
+-- 		url = "~/git_projects/tree-sitter-rego", -- local path or git repo
+-- 		files = { "src/parser.c" },
+-- 	},
+-- 	-- filetype = "rego", -- if filetype does not agrees with parser name
+-- }
+
+-- local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+-- ft_to_parser.rmd = "markdown"

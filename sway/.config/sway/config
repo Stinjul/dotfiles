@@ -94,7 +94,7 @@ input "0:0:virtual_keyboard" {
     bindsym Control+Tab exec dunstctl history-pop
     bindsym Control+Shift+Tab exec dunstctl context
 
-    bindsym $mod+Alt+s exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | wl-copy
+    bindsym $mod+Shift+s exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | wl-copy
     bindsym $mod+Control+s exec grim -g "$(slurp)" - | wl-copy
 
 #
